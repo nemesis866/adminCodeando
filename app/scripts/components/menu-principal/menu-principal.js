@@ -5,19 +5,23 @@ Webcomponent para menu de la app
 (function (){
 	'use strict';
 
-	// Configuracion del web component
-	var menuPrincipal = {
-		templateUrl: './scripts/components/menu-principal/menu-principal.html',
-		controller: controller
-	};
-
 	// Controlador
-	function controller()
+	function Controller(fncService)
 	{
 		var vm = this;
 
-		vm.msg = 'Hola mundo';
+		vm.change = function (id)
+		{
+			// Obtenemos los elementos del menu
+			var elems = $('.items');
+		};
 	}
+
+	// Configuracion del web component
+	var menuPrincipal = {
+		templateUrl: './scripts/components/menu-principal/menu-principal.html',
+		controller: ['fncService', Controller]
+	};
 
 	angular
 		.module('app')

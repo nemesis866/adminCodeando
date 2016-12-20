@@ -10,14 +10,13 @@ Configuración del router de la app
 		// Configuramos las rutas
 		$routeProvider
 			.when('/', {
-				controller: 'mainController',
-				controllerAs: 'vm',
-				templateUrl: 'views/home.html'
+				template: '<inicio></inicio>'
 			})
-			.when('/page1', {
-				controller: 'mainController',
-				controllerAs: 'vm',
-				templateUrl: 'views/page1.html'
+			.when('/courses', {
+				template: '<cursos></cursos>'
+			})
+			.when('/courses/new', {
+				template: '<curso-nuevo></curso-nuevo>'
 			})
 			.when('/page2', {
 				controller: 'mainController',

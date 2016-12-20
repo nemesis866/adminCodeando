@@ -26,6 +26,7 @@
   "dependencies": {
     "bootstrap": "~3.3.5",
     "angular": "^1.6.0",
-    "angular-route": "^1.6.0"
+    "angular-route": "^1.6.0",
+    "ngReact": "^0.3.0"
   }
 }
