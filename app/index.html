@@ -13,14 +13,17 @@
 	<base href="/">
 </head>
 <body>
-	<nav>
-		<ul>
-			<li><a href="/">Inicio</a></li>
-			<li><a href="/page1">Página 1</a></li>
-			<li><a href="/page2">Página 2</a></li>
-		</ul>
-	</nav>
-	<div ng-view></div>
+	<div id="wrapper">
+		<nav>
+			<ul>
+				<li><a href="/">Inicio</a></li>
+				<li><a href="/page1">Página 1</a></li>
+				<li><a href="/page2">Página 2</a></li>
+			</ul>
+		</nav>
+		<menu-principal></menu-principal>
+		<div ng-view></div>
+	</div>
 
 	<!-- bower:js -->
 	<script src="vendor/jquery/dist/jquery.js"></script>

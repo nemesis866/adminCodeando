@@ -1,0 +1,30 @@
+/*
+* Hoja de estilos de la APP
+*/
+
+/********************************************
+Opciones generales
+********************************************/
+
+*
+{
+	margin: 0;
+	padding: 0;
+}
+html
+{
+	height: 101%;
+}
+body
+{
+	background-color: #f0f0f0;
+	color: #333;
+	font-family: verdana;
+	font-size: 16px;
+}
+
+#wrapper
+{
+	max-width: 1100px;
+	margin: 0 auto;
+}
