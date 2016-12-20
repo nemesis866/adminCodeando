@@ -38,3 +38,6 @@ jspm_packages
 
 # para dependencias bower
 app/vendor/*
+
+# archivos propios
+app/min/*

@@ -7,6 +7,7 @@ Configuración del router de la app
 
 	function config ($routeProvider, $locationProvider)
 	{
+		// Configuramos las rutas
 		$routeProvider
 			.when('/', {
 				controller: 'mainController',
@@ -23,6 +24,7 @@ Configuración del router de la app
 				controllerAs: 'vm',
 				templateUrl: 'views/page2.html'
 			})
+			// En caso de no existir la ruta redireccionamos aqui
 			.otherwise({
 				redirectTo: '/'
 		    });
