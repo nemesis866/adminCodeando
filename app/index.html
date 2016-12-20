@@ -2,6 +2,7 @@
 <html lang="es" ng-app="app">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1-0, user-scalable=no"/>
 	<title>Sistema de Administración Codeando</title>
 
 	<!-- bower:css -->
@@ -9,20 +10,27 @@
 	<!-- inject:css -->
 	<link rel="stylesheet" href="/min/css/main.css">
 	<!-- endinject -->
+	<link rel="stylesheet" type="text/css" href="/vendor/bootstrap/dist/css/bootstrap.min.css">
 
 	<base href="/">
 </head>
 <body>
-	<div id="wrapper">
-		<nav>
-			<ul>
-				<li><a href="/">Inicio</a></li>
-				<li><a href="/page1">Página 1</a></li>
-				<li><a href="/page2">Página 2</a></li>
-			</ul>
-		</nav>
-		<menu-principal></menu-principal>
-		<div ng-view></div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-4 col-md-4 col-xl-12">
+				<nav>
+					<ul>
+						<li><a href="/">Inicio</a></li>
+						<li><a href="/page1">Página 1</a></li>
+						<li><a href="/page2">Página 2</a></li>
+					</ul>
+				</nav>
+				<menu-principal></menu-principal>
+			</div>
+			<div class="col-lg-8 col-md-8 col-xl-12">
+				<div ng-view></div>
+			</div>
+		</div>
 	</div>
 
 	<!-- bower:js -->
