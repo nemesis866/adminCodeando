@@ -1,0 +1,31 @@
+{
+  "name": "web-kit-frontend",
+  "description": "Servidor web para inciar proyectos de aplicaciones web frontend",
+  "main": "index.js",
+  "authors": [
+    "Paulo Andrade"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "servidor",
+    "web",
+    "frontend",
+    "kit",
+    "inicio"
+  ],
+  "homepage": "https://github.com/nemesis866/web-kit-frontend",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "angular": "^1.6.0",
+    "angular-route": "^1.6.0"
+  }
+}
