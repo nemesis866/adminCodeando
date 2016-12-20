@@ -27,7 +27,7 @@ Tendras acceso a la libreria desde.-
 /bower_components/bootstrap/dist/css/bootstrap.min.css
 ```
 
-Nota.- Al instalar bootstrap mesiante bower, asegurate de estar en el directorio principal de tu proyecto.
+Nota.- Al instalar bootstrap mediante bower, asegurate de estar en el directorio principal de tu proyecto.
 
 IMPORTANTE!!, para que funcione bootstrap es necesario tener instalado jquery.
 
