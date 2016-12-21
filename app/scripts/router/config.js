@@ -18,10 +18,11 @@ Configuración del router de la app
 			.when('/courses/new', {
 				template: '<curso-nuevo></curso-nuevo>'
 			})
-			.when('/page2', {
-				controller: 'mainController',
-				controllerAs: 'vm',
-				templateUrl: 'views/page2.html'
+			.when('/categories', {
+				template: '<categoria></categoria>'
+			})
+			.when('/categories/new', {
+				template: '<categoria-nuevo></categoria-nuevo>'
 			})
 			// En caso de no existir la ruta redireccionamos aqui
 			.otherwise({
