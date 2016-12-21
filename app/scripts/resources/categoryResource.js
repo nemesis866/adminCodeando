@@ -10,7 +10,7 @@ Servicio para obtener las categorias
 		var url = 'http://127.0.0.1:5000/categories';
 
 		return $resource(url, {}, {
-  			'save': { method:'POST', isArray:true }
+  			'save': { method:'POST', isArray:false }
   		});
   		// return $resource(url);
 	}

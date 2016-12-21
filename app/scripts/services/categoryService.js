@@ -22,7 +22,7 @@ Servicio para procesar categorias
 			function success ()
 			{
 				// Limpiamos los campos del formulario
-				model.name = '';
+				model.titulo = '';
 
 				// Mostramos mensaje de exito
 				var msgSuccess = 'La categoria se creo con exito';
@@ -30,13 +30,13 @@ Servicio para procesar categorias
 			}
 
 			// Validamos que ningun campo este vacio
-			if(model.name.length > 5){
+			if(model.titulo.length >= 3){
 				// Enviamos el recurso
 				categoryResource.save({
-					name: model.name,
+					titulo: model.titulo,
 				}, success, error);
 			} else {
-				var msgField = 'El campo debe tener al menos 5 caracteres';
+				var msgField = 'El nombre debe tener al menos 3 caracteres';
 				fncService.error(msgField);
 			}
 		};

@@ -6,17 +6,29 @@ Webcomponent para categoria nueva
 	'use strict';
 
 	// Controlador
-	function CategoriaNuevo()
+	function CategoriaNuevo (categoryService)
 	{
 		var vm = this;
 
-		vm.msg = 'Hola mundo';
+		// Configuración del formulario
+		vm.formConfig = {
+			required: true
+		};
+
+		// Procesando formulario
+		vm.setCategory = function (model)
+		{
+			categoryService.setCategory(model);
+		};
 	}
 
 	// Configuracion del web component
 	var categoriaNuevo = {
 		templateUrl: './scripts/components/categoria-nuevo/categoria-nuevo.html',
-		controller: CategoriaNuevo
+		controller: [
+				'categoryService',
+				CategoriaNuevo
+			]
 	};
 
 	angular
