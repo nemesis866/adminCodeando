@@ -10,6 +10,14 @@ Webcomponent para menu de la app
 	{
 		var vm = this;
 
+		// Clases para el menu
+		vm.menu = [
+			'active',
+			'',
+			''
+		];
+
+		// cambios de menu
 		vm.change = function (id)
 		{
 			// Obtenemos los elementos del menu

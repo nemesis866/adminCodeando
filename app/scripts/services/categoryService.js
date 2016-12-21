@@ -47,7 +47,7 @@ Servicio para procesar categorias
 			// Obtenemos el listado de cursos
 			categoryResource.query({})
 			.$promise.then(function (data){
-				console.log(data);
+				
 			});
 		};
 	}
