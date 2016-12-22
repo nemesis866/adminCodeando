@@ -7,6 +7,32 @@ Servicio para funciones repetitivas
 
 	function FncService ()
 	{
+		// Funcion para verificar los input
+		this.checkInput = function (data, size, title)
+		{
+			var text = '';
+
+			if(data.length === 0){
+				text = '* Debe llenar todos los campos del formulario';
+			} else if(data.indexOf('<') !== -1){
+				text = 'Esta ingresando caracteres no permitidos "<"';
+			} else if(data.indexOf('>') !== -1){
+				text = 'Esta ingresando caracteres no permitidos ">"';
+			} else if(data.indexOf(';') !== -1){
+				text = 'Esta ingresando caracteres no permitidos ";"';
+			} else if(data.length < size){
+				text = 'Debe ingresar minimo '+size+' caracteres para el campo '+title;
+			}
+
+			if(!this.isEmpty(text)){
+				this.error(text);
+
+				return true;
+			} else {
+				return false;
+			}
+		};
+
 		// Funcion que verifica si una clase existe en un elemento html
 		this.thereClass = function (elem, cls)
 		{

@@ -22,6 +22,15 @@ body
 	font-family: verdana;
 	font-size: 16px;
 }
+option
+{
+	padding: 10px 5px;
+}
+option:hover
+{
+	background-color: #337AB7;
+	cursor: pointer;
+}
 
 .error
 {
@@ -79,4 +88,15 @@ Opciones para iconos como botones
 {
 	transition-duration: .5s;
 	transform: scale(1.5);
+}
+
+/********************************************
+Opciones para el contador en formularios
+********************************************/
+
+.count
+{
+	background: #1F6177;
+	color: #fff;
+	padding: 5px;
 }

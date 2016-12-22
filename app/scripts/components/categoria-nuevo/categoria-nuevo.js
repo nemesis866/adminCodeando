@@ -27,6 +27,12 @@ Webcomponent para categoria nueva
 		// Procesando formulario
 		vm.setCategory = function (model)
 		{
+			// Acciones para model
+			if(typeof(model) === 'undefined'){
+				model = {};
+				model.titulo = '';
+			}
+
 			var control = categoryService.setCategory(model);
 
 			// Verificamos el control

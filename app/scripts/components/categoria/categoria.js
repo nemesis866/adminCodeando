@@ -22,14 +22,14 @@ Webcomponent para las categorias
 			vm.categories = storageFactory.categories;
 
 			// Verificamos si hay categorias
-		if(fncService.isEmpty(vm.categories)){
-			// Si el objeto esta vacio
-			vm.viewCategory = { oculto: true };
-			vm.viewMsg = { oculto: false };
-		} else {
-			vm.viewCategory = { oculto: false };
-			vm.viewMsg = { oculto: true };
-		}
+			if(fncService.isEmpty(vm.categories)){
+				// Si el objeto esta vacio
+				vm.viewCategory = { oculto: true };
+				vm.viewMsg = { oculto: false };
+			} else {
+				vm.viewCategory = { oculto: false };
+				vm.viewMsg = { oculto: true };
+			}
 		};
 
 		// Eliminamos una categoria
