@@ -11,7 +11,7 @@
 		<div class="alert alert-info" role="alert">
 			<p><span class="glyphicon glyphicon-info-sign" aria-hidden="true"> En esta sección usted podra crear una categoria para la plataforma codeando</p>
 		</div>
-		<form id="form_category" validate>
+		<form id="form_category" validate ng-class="$ctrl.viewForm">
 			<div class="input-group">
 				<span class="input-group-addon" id="basic-addon1">Categoria</span>
 				<input type="text" ng-model="form.titulo" name="titulo" class="form-control" placeholder="Ingrese el nombre de la categoria" aria-describedby="basic-addon1" ng-required="$ctrl.formConfig.required">
@@ -21,5 +21,8 @@
   				<button type="button" class="btn btn-success" ng-click="$ctrl.setCategory(form)" ng-disabled="form_category.$invalid">Guardar</button>
   			</div>
 		</form>
+		<div class="alert alert-success" role="alert" ng-class="$ctrl.viewMsg">
+			<p><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"> La categoria se creo con exito.</p>
+		</div>
 	</div>
 </div>

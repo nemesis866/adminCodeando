@@ -94,6 +94,15 @@ Servicio para funciones repetitivas
 				document.querySelector('.success').style.webkitTransform = 'translateY(-60px)';
 			}, 3000);
 		};
+
+		// Funcion para obtener un elemento ID
+		this.getElement = function (id)
+		{
+			if(document.querySelectorAll(id)){
+				return document.querySelectorAll(id);
+			}
+			return null;
+		};
 	}
 
 	angular

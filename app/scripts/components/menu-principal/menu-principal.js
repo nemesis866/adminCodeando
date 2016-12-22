@@ -9,19 +9,34 @@ Webcomponent para menu de la app
 	function Controller(fncService)
 	{
 		var vm = this;
+		var path = window.location.pathname;
 
 		// Clases para el menu
-		vm.menu = [
-			'active',
-			'',
-			''
-		];
+		vm.inicio = { active: true };
+		vm.cursos = { active: false };
+		vm.categorias = { active: false };
 
 		// cambios de menu
 		vm.change = function (id)
 		{
-			// Obtenemos los elementos del menu
-			var elems = $('.items');
+			// Cambiamos los valores
+			switch(id){
+				case 0:
+					vm.inicio = { active: true };
+					vm.cursos = { active: false };
+					vm.categorias = { active: false };
+					break;
+				case 1:
+					vm.inicio = { active: false };
+					vm.cursos = { active: true };
+					vm.categorias = { active: false };
+					break;
+				case 2:
+					vm.inicio = { active: false };
+					vm.cursos = { active: false };
+					vm.categorias = { active: true };
+					break;
+			}
 		};
 	}
 

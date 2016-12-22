@@ -1,0 +1,29 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">Categorias</h3>
+	</div>
+	<div class="panel-body">
+		<ul class="nav nav-tabs">
+			<li role="presentation"><a href="/categories">Categorias</a></li>
+			<li role="presentation"><a href="/categories/new">Nueva</a></li>
+			<li role="presentation" class="active"><a href="#">Editar</a></li>
+		</ul>
+		<br/>
+		<div class="alert alert-info" role="alert">
+			<p><span class="glyphicon glyphicon-info-sign" aria-hidden="true"> En esta sección usted podra editar la categoria seleccionada</p>
+		</div>
+		<form id="form_category" validate ng-class="$ctrl.viewForm">
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1">Categoria</span>
+				<input type="text" id="formTitulo" ng-model="form.titulo" name="titulo" class="form-control" placeholder="Ingrese el nombre de la categoria" ng-model="$ctrl.value" aria-describedby="basic-addon1" ng-required="$ctrl.formConfig.required">
+			</div>
+			<br/>
+			<div class="text-right">
+  				<button type="button" class="btn btn-success" ng-click="$ctrl.updateCategory(form)" ng-disabled="form_category.$invalid">Guardar</button>
+  			</div>
+		</form>
+		<div class="alert alert-success" role="alert" ng-class="$ctrl.viewMsg">
+			<p><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"> La categoria se edito con exito.</p>
+		</div>
+	</div>
+</div>

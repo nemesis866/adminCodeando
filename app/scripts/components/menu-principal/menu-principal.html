@@ -4,9 +4,9 @@
 	</div>
 	<div class="panel-body">
 		<div class="list-group">
-			<a href="/" class="list-group-item item" data-id="1">Inicio</a>
-			<a href="/courses" class="list-group-item item" data-id="2">Cursos</a>
-			<a href="/categories" class="list-group-item item" data-id="3">Categorias</a>
+			<a href="/" class="list-group-item item" ng-class="$ctrl.inicio" ng-click="$ctrl.change(0)">Inicio</a>
+			<a href="/courses" class="list-group-item item" ng-class="$ctrl.cursos" ng-click="$ctrl.change(1)">Cursos</a>
+			<a href="/categories" class="list-group-item item" ng-class="$ctrl.categorias" ng-click="$ctrl.change(2)">Categorias</a>
 		</div>
 	</div>
 </div>

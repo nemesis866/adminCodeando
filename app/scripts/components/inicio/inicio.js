@@ -10,6 +10,9 @@ Webcomponent para el inicio
 	{
 		var vm = this;
 
+		// Cambiamos el titulo
+		document.title = 'Bienvenidos | Codeando.org';
+
 		vm.msg = 'Hola mundo';
 	}
 

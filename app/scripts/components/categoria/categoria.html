@@ -9,9 +9,32 @@
 		</ul>
 		<br/>
 		<div class="alert alert-info" role="alert">
-			<p><span class="glyphicon glyphicon-info-sign" aria-hidden="true"> En esta sección se muestran las categorias disponibles</p>
+			<p><span class="glyphicon glyphicon-info-sign" aria-hidden="true"> En esta sección se muestran las categorias disponibles en la plataforma</p>
 		</div>
-		<div class="alert alert-warning" role="alert">
+		<div class="panel panel-default" ng-class="$ctrl.viewCategory">
+			<!-- Default panel contents -->
+			<div class="panel-heading text-center">Categorias disponibles</div>
+			<!-- Table -->
+			<table class="table">
+				<thead>
+					<tr><th>Nombre</th><th>Opciones</th></tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="category in $ctrl.categories | orderBy:'titulo':false">
+						<td>{{ category.titulo }}</td>
+						<td>
+							<button type="button" class="btn btn-warning btn-xs" aria-haspopup="true" aria-expanded="false" ng-click="$ctrl.editCategory(category._id)">
+								<span class="glyphicon glyphicon-pencil"></span> Editar
+							</button>
+							<button type="button" class="btn btn-danger btn-xs" aria-haspopup="true" aria-expanded="false" ng-click="$ctrl.deleteCategory(category._id)">
+								<span class="glyphicon glyphicon-trash"></span> Eliminar
+							</button>
+  						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="alert alert-warning" role="alert" ng-class="$ctrl.viewMsg">
 			<p><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"> Lo sentimos aun no tiene categorias, puede crear un categoria ahora mismo.</p>
 		</div>
 	</div>

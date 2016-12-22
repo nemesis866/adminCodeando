@@ -24,6 +24,9 @@ Configuración del router de la app
 			.when('/categories/new', {
 				template: '<categoria-nuevo></categoria-nuevo>'
 			})
+			.when('/categories/edit/:id', {
+				template: '<categoria-editar></categoria-editar>'
+			})
 			// En caso de no existir la ruta redireccionamos aqui
 			.otherwise({
 				redirectTo: '/'
