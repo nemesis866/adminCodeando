@@ -20,6 +20,20 @@ Servicio para procesar categorias
 			fncService.error(msg);	
 		}
 
+		// Obtenemos las categorias
+		this.getCategory = function ()
+		{
+			// Verificamos si el objeto de las categorias esta vacio
+			if(fncService.isEmpty(storageFactory.categories)){
+				// Obtenemos el listado de cursos
+				// solo si el objeto esta vacio
+				categoryResource.query({})
+				.$promise.then(function (data){
+					storageFactory.categories = data;
+				});
+			}
+		};
+
 		// Guardamos los datos en la base de datos
 		this.setCategory = function (model)
 		{
@@ -38,7 +52,11 @@ Servicio para procesar categorias
 
 				// Actualizamos el objeto de categorias
 				if(!fncService.isEmpty(storageFactory.categories)){
+					// Si ya existe el objeto lo actualizamos
 					storageFactory.categories.push(data);
+				} else {
+					// Si no cargamos el objeto nuevo
+					this.getCategory();
 				}
 
 				// Redireccionamos
@@ -66,20 +84,6 @@ Servicio para procesar categorias
 					control = 0;
 					return 0;
 				}
-			}
-		};
-
-		// Obtenemos las categorias
-		this.getCategory = function ()
-		{
-			// Verificamos si el objeto de las categorias esta vacio
-			if(fncService.isEmpty(storageFactory.categories)){
-				// Obtenemos el listado de cursos
-				// solo si el objeto esta vacio
-				categoryResource.query({})
-				.$promise.then(function (data){
-					storageFactory.categories = data;
-				});
 			}
 		};
 

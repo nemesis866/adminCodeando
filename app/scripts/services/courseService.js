@@ -20,6 +20,20 @@ Servicio para procesar cursos
 			fncService.error(msg);	
 		}
 
+		// Obtenemos los cursos
+		this.getCourse = function ()
+		{
+			// Verificamos si el objeto de los cursos esta vacio
+			if(fncService.isEmpty(storageFactory.courses)){
+				// Obtenemos el listado de cursos
+				// solo si el objeto esta vacio
+				courseResource.query({})
+				.$promise.then(function (data){
+					storageFactory.courses = data;
+				});
+			}
+		};
+
 		// Guardamos los datos en la base de datos
 		this.setCourse = function (model)
 		{
@@ -42,7 +56,11 @@ Servicio para procesar cursos
 
 				// Actualizamos el objeto de los cursos
 				if(!fncService.isEmpty(storageFactory.courses)){
+					// Si ya existe el objeto lo actualizamos
 					storageFactory.courses.push(data);
+				} else {
+					// Si no cargamos el objeto nuevo
+					this.getCourse();
 				}
 
 				// Redireccionamos
