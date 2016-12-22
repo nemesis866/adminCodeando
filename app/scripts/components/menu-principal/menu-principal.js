@@ -6,7 +6,7 @@ Webcomponent para menu de la app
 	'use strict';
 
 	// Controlador
-	function Controller(fncService)
+	function Controller()
 	{
 		var vm = this;
 		var path = window.location.pathname;
@@ -38,12 +38,21 @@ Webcomponent para menu de la app
 					break;
 			}
 		};
+
+		// Verificamos la ruta
+		path = path.split('/');
+		
+		switch(path[1]){
+			case 'init': vm.change(0); break;
+			case 'courses': vm.change(1); break;
+			case 'categories': vm.change(2); break;
+		}
 	}
 
 	// Configuracion del web component
 	var menuPrincipal = {
 		templateUrl: './scripts/components/menu-principal/menu-principal.html',
-		controller: ['fncService', Controller]
+		controller: [Controller]
 	};
 
 	angular

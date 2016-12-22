@@ -9,7 +9,7 @@ Configuración del router de la app
 	{
 		// Configuramos las rutas
 		$routeProvider
-			.when('/', {
+			.when('/init', {
 				template: '<inicio></inicio>'
 			})
 			.when('/courses', {
