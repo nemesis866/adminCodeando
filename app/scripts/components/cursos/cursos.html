@@ -11,8 +11,91 @@
 		<div class="alert alert-info" role="alert">
 			<p><span class="glyphicon glyphicon-info-sign" aria-hidden="true"> En esta sección se muestran los cursos de su propiedad</p>
 		</div>
-		<div class="alert alert-warning" role="alert">
+		<div class="panel panel-default" ng-class="$ctrl.viewCourse">
+			<!-- Default panel contents -->
+			<div class="panel-heading text-center">Cursos disponibles</div>
+			<!-- Table -->
+			<table class="table">
+				<thead>
+					<tr><th>Titulo</th><th>Opciones</th></tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="course in $ctrl.courses | orderBy:'titulo':false">
+						<td>{{ course.titulo }}</td>
+						<td>
+							<button type="button" class="btn btn-default btn-xs" aria-haspopup="true" aria-expanded="false" ng-click="$ctrl.editCourse(course._id)">
+								<span class="glyphicon glyphicon-cog"></span> PreView
+							</button>
+							<button type="button" class="btn btn-default btn-xs" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#bs-mensaje-modal-lg" data-id="{{ course._id }}">
+								<span class="glyphicon glyphicon-envelope"></span> Mensajes
+							</button>
+							<button type="button" class="btn btn-success btn-xs" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#bs-publicar-modal-lg" data-id="{{ course._id }}">
+								<span class="glyphicon glyphicon-cloud-upload"></span> Publicar
+							</button>
+							<button type="button" class="btn btn-default btn-xs" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#bs-estadistica-modal-lg" data-id="{{ course._id }}">
+								<span class="glyphicon glyphicon-stats"></span> Estadisticas
+							</button>
+							<button type="button" class="btn btn-warning btn-xs" aria-haspopup="true" aria-expanded="false" ng-click="$ctrl.editCourse(course._id)">
+								<span class="glyphicon glyphicon-pencil"></span> Editar
+							</button>
+							<button type="button" class="btn btn-danger btn-xs" aria-haspopup="true" aria-expanded="false" ng-click="$ctrl.deleteCourse(course._id)">
+								<span class="glyphicon glyphicon-trash"></span> Eliminar
+							</button>
+  						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="alert alert-warning" role="alert" ng-class="$ctrl.viewMsg">
 			<p><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"> Lo sentimos aun no tiene cursos, puede crear un curso ahora mismo.</p>
 		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="bs-publicar-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+	<div class="modal-dialog modal-lg" role="document">
+    	<div class="modal-content">
+    		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title" id="myModalLabel">Publicar su curso</h4>
+      		</div>
+    		<div class="modal-body">
+    		</div>
+    		<div class="modal-footer">
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    		</div>
+    	</div>
+	</div>
+</div>
+
+<div class="modal fade" id="bs-mensaje-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+	<div class="modal-dialog modal-lg" role="document">
+    	<div class="modal-content">
+    		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title" id="myModalLabel">Mensajes del equipo codeando</h4>
+      		</div>
+    		<div class="modal-body">
+    		</div>
+    		<div class="modal-footer">
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    		</div>
+    	</div>
+	</div>
+</div>
+
+<div class="modal fade" id="bs-estadistica-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+	<div class="modal-dialog modal-lg" role="document">
+    	<div class="modal-content">
+    		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title" id="myModalLabel">Estadisticas del curso</h4>
+      		</div>
+    		<div class="modal-body">
+    		</div>
+    		<div class="modal-footer">
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    		</div>
+    	</div>
 	</div>
 </div>

@@ -54,13 +54,12 @@ Servicio para procesar categorias
 				if(!fncService.isEmpty(storageFactory.categories)){
 					// Si ya existe el objeto lo actualizamos
 					storageFactory.categories.push(data);
-				} else {
-					// Si no cargamos el objeto nuevo
-					this.getCategory();
 				}
 
 				// Redireccionamos
-				$location.href('/categories');
+				setTimeout(function (){
+					$location.url('/categories');
+				}, 2000);
 			}
 
 			// verificamos que el control este disponible
@@ -156,7 +155,9 @@ Servicio para procesar categorias
 				}
 
 				// Redireccionamos
-				$location.href('/categories');
+				setTimeout(function (){
+					$location.url('/categories');
+				}, 2000);
 			}
 
 			// verificamos que el control este disponible

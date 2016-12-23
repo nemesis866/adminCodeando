@@ -6,17 +6,86 @@ Webcomponent para cursos
 	'use strict';
 
 	// Controlador
-	function Cursos()
+	function Cursos($location, $scope, storageFactory, courseService, fncService)
 	{
 		var vm = this;
 
-		vm.msg = 'Hola mundo';
+		// Cambiamos el titulo
+		document.title = 'Cursos | Codeando.org';
+
+		// Obtenemos las categorias
+		courseService.getCourse();
+
+		// cursos disponibles
+		vm.courseWatch = function ()
+		{
+			vm.courses = storageFactory.courses;
+
+			// Verificamos si hay categorias
+			if(fncService.isEmpty(vm.courses)){
+				// Si el objeto esta vacio
+				vm.viewCourse = { oculto: true };
+				vm.viewMsg = { oculto: false };
+			} else {
+				vm.viewCourse = { oculto: false };
+				vm.viewMsg = { oculto: true };
+			}
+		};
+
+		// Eliminamos un curso
+		vm.deleteCourse = function (id)
+		{
+			courseService.deleteCourse(id);
+		};
+
+		// Editamos un curso
+		vm.editCourse = function (id)
+		{
+			$location.url('/courses/edit/' + id);
+		};
+
+		// Ventana modal para publicar
+		$('#bs-publicar-modal-lg').on('show.bs.modal', function (event) {
+			var button = $(event.relatedTarget) // Button that triggered the modal
+  			var id = button.data('id') // Extract info from data-* attributes
+
+			var modal = $(this);
+			modal.find('.modal-title').text('New message to '+id);
+		});
+
+		// Ventana modal para estadistica
+		$('#bs-estadistica-modal-lg').on('show.bs.modal', function () {
+			var button = $(event.relatedTarget) // Button that triggered the modal
+  			var id = button.data('id') // Extract info from data-* attributes
+
+			var modal = $(this);
+			modal.find('.modal-title').text('New message to '+id);
+		});
+
+		// Ventana modal para mensajes
+		$('#bs-mensaje-modal-lg').on('show.bs.modal', function () {
+			var button = $(event.relatedTarget) // Button that triggered the modal
+  			var id = button.data('id') // Extract info from data-* attributes
+
+			var modal = $(this);
+			modal.find('.modal-title').text('New message to '+id);
+		});
+
+		// Ponemos los cambios en escucha
+		$scope.$watch(vm.courseWatch);
 	}
 
 	// Configuracion del web component
 	var cursos = {
 		templateUrl: './scripts/components/cursos/cursos.html',
-		controller: Cursos
+		controller: [
+			'$location',
+			'$scope',
+			'storageFactory',
+			'courseService',
+			'fncService',
+			Cursos
+		]
 	};
 
 	angular

@@ -18,6 +18,9 @@ Configuración del router de la app
 			.when('/courses/new', {
 				template: '<curso-nuevo></curso-nuevo>'
 			})
+			.when('/courses/edit/:id', {
+				template: '<curso-editar></curso-editar>'
+			})
 			.when('/categories', {
 				template: '<categoria></categoria>'
 			})

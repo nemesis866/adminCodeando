@@ -1,0 +1,64 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">Cursos</h3>
+	</div>
+	<div class="panel-body">
+		<ul class="nav nav-tabs">
+			<li role="presentation"><a href="/courses">Cursos</a></li>
+			<li role="presentation"><a href="/courses/new">Nuevo</a></li>
+			<li role="presentation" class="active"><a href="#">Editar</a></li>
+		</ul>
+		<br/>
+		<div class="alert alert-info" role="alert">
+			<p><span class="glyphicon glyphicon-info-sign" aria-hidden="true"> En esta sección usted podra editar el curso seleccionado</p>
+		</div>
+		<form id="form_course" validate ng-class="$ctrl.viewForm">
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1">Autor</span>
+				<input type="text" ng-model="$ctrl.name" name="userName" class="form-control" aria-describedby="basic-addon1" ng-required="$ctrl.formConfig.required" disabled>
+			</div>
+			<br/>
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1">Titulo</span>
+				<input type="text" id="formTitulo" ng-model="form.titulo" name="titulo" class="form-control" placeholder="Ingrese el titulo para el curso" maxlength="60" aria-describedby="basic-addon1" ng-required="$ctrl.formConfig.required">
+			</div>
+			<span class = "help-block text-right">
+				Limite de 60 caracteres
+			</span>
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1">Subtitulo</span>
+				<input type="text" id="formSubtitulo" ng-model="form.subTitulo" name="subTitulo" class="form-control" placeholder="Ingrese el titulo secundario" maxlength="120" aria-describedby="basic-addon1" ng-required="$ctrl.formConfig.required">
+			</div>
+			<span class = "help-block text-right">
+				Limite de 120 caracteres
+			</span>
+			<div class="form-group">
+				<label>Seleccione una categoria</label>
+				<select class="form-control" title="Seleccione una categoria" ng-model="form.categoria" name="categoria">
+					<option id="formCategoria"></option>
+					<option ng-repeat="category in $ctrl.categories | orderBy:'titulo':false">{{category.titulo}}</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label>Descripcion del curso</label>
+				<textarea id="formDescripcion" class="form-control" rows="5" maxlength="2000" ng-model="form.descripcion" name="descripcion" placeholder="Ingrese una descripcion sobre los temas que abarcaran su curso"></textarea>
+			<div/>
+			<span class = "help-block text-right">
+				Limite de 2000 caracteres
+			</span>
+			<div class="form-group">
+				<label>Requisitos minimos para tomar el curso</label>
+				<textarea id="formRequisitos" class="form-control" rows="5" maxlength="500" ng-model="form.requisitos" name="requisitos" placeholder="Ingrese los requisitos minimos necesarios para poder tomar su curso"></textarea>
+			<div/>
+			<span class = "help-block text-right">
+				Limite de 500 caracteres
+			</span>
+			<div class="text-right">
+  				<button type="button" class="btn btn-success" ng-click="$ctrl.updateCourse(form)" ng-disabled="form_course.$invalid">Guardar</button>
+  			</div>
+		</form>
+		<div class="alert alert-success" role="alert" ng-class="$ctrl.viewMsg">
+			<p><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"> El curso se creo con exito.</p>
+		</div>
+	</div>
+</div>

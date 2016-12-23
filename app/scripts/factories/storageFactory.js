@@ -11,6 +11,7 @@ Factory para compartir datos entre los controladores
     	categories: {}, // Objeto para almacenas categorias
     	categoryEdit: '', // titulo de la categoria a editar
     	courses: {}, // Objeto para almacenar los cursos
+    	courseEdit: {}, // Objeto para almacenar un curso en especifico
     	user: {
     		id: 1234567890, // ID del usuario
     		name: 'Paulo Andrade', // Nombre del usuario
