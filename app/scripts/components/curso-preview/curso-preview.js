@@ -1,21 +1,19 @@
 /*************************************
-Webcomponent para editar curso
+Webcomponent para preview del curso
 *************************************/
 
 (function (){
 	'use strict';
 
 	// Controlador
-	function CursoEditar ($routeParams, $scope, storageFactory, categoryService, courseService)
+	function CursoPreview ($routeParams, $scope, storageFactory, categoryService, courseService)
 	{
 		var vm = this;
 		vm.param = $routeParams.id;
 
 		// Cambiamos el titulo
-		document.title = 'Editar curso | Codeando.org';
+		document.title = 'Preview curso | Codeando.org';
 
-		// Obtenemos las categorias
-		categoryService.getCategory();
 		// Obtenemos los datos del curso a editar
 		courseService.getByIdCourse(vm.param);
 
@@ -33,21 +31,7 @@ Webcomponent para editar curso
 		// Ponemos en escucha
 		vm.valueWitch = function ()
 		{
-			vm.name = storageFactory.user.name;
-			vm.categories = storageFactory.categories;
 			vm.titulo = storageFactory.courseEdit.titulo;
-		};
-
-		// Guardamos la categoria
-		vm.updateCourse = function(model)
-		{
-			var control = courseService.updateCourse(model, vm.param);
-
-			// Verificamos el control
-			if(control === 1){
-				vm.viewForm = { oculto: true };
-				vm.viewMsg = { oculto: false };				
-			}
 		};
 
 		// En escucha de cambios
@@ -55,19 +39,19 @@ Webcomponent para editar curso
 	}
 
 	// Configuracion del web component
-	var cursoEditar = {
-		templateUrl: './scripts/components/curso-editar/curso-editar.html',
+	var cursoPreview = {
+		templateUrl: './scripts/components/curso-preview/curso-preview.html',
 		controller: [
 				'$routeParams',
 				'$scope',
 				'storageFactory',
 				'categoryService',
 				'courseService',
-				CursoEditar
+				CursoPreview
 			]
 	};
 
 	angular
 		.module('app')
-			.component('cursoEditar', cursoEditar); // El nombre debe estar con camel case
+			.component('cursoPreview', cursoPreview); // El nombre debe estar con camel case
 })();

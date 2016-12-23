@@ -21,6 +21,9 @@ Configuración del router de la app
 			.when('/courses/edit/:id', {
 				template: '<curso-editar></curso-editar>'
 			})
+			.when('/courses/preview/:id', {
+				template: '<curso-preview></curso-preview>'
+			})
 			.when('/categories', {
 				template: '<categoria></categoria>'
 			})

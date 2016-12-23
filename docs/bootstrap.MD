@@ -163,5 +163,66 @@ Podemos ocultar y/o mostrar elementos al momento de imprimir la pagina.-
 * visible-print (Sera visible solo para imprimir, pero oculto en la web).
 * hidden-print (Sera visible en la web, pero oculto para imprimir).
 
-# componentes
+# Componentes
 
+## Formularios
+
+### Input
+
+### Textarea
+
+### Select
+
+# Ventanas modales
+
+Crear una ventana modal (popup) con bootstrap es muy sencillo, el html es el siguiente.-
+
+```html
+<button type="button" class="btn btn-default btn-xs" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#bs-mensaje-modal-lg" data-id="{{ course._id }}">
+	<span class="glyphicon glyphicon-envelope"></span> Mensajes
+</button>
+
+<div class="modal fade" id="bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+	<div class="modal-dialog modal-lg" role="document">
+    	<div class="modal-content">
+    		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title" id="myModalLabel">Publicar su curso</h4>
+      		</div>
+    		<div class="modal-body">
+    		</div>
+    		<div class="modal-footer">
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    		</div>
+    	</div>
+	</div>
+</div>
+```
+
+Detalles a tomar en cuenta, en el boton que manda a llamar al popup hay que agregarle los siguientes atributos.-
+
+* data-toggle="modal".- Le indicamos que al presionar el boton se mostrara una ventana modal.
+* data-target="#bs-mensaje-modal-lg".- le indicamos el identificador o la clase de nuestra ventana modal.
+* data-id="info".- En caso de querer pasar informacion a nuestra ventana modal.
+
+En la estructura de la ventana se divide en tres partes.-
+
+* modal-header.- Es la cabecera de nuestra ventana modal, aqui colocamos el titulo de la ventana y un boton para cerrar.
+* modal-body.- En esta parte colocamos el contenido de nuestra ventana modal.
+* modal-footer.- Pie de la ventana modal, aqui tenemos un boton para cerrar la ventana modal.
+
+El codigo javascript en las ventanas modales lo utilizamos para procesar informacion que queremos mostrar en esta.-
+
+```js
+$('#bs-publicar-modal-lg').on('show.bs.modal', function (event) {
+	// Obtenemos el elemento presionado (boton)
+	var button = $(event.relatedTarget);
+	// Obtenemos el data-id del boton
+	var id = button.data('id') // Extract info from data-* attributes
+
+	// Obtenemos el elemento de la ventana modal
+	var modal = $(this);
+	// Accion que realizamos para la ventana modal
+	modal.find('.modal-title').text('New message to '+id);
+});
+```

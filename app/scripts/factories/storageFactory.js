@@ -8,8 +8,11 @@ Factory para compartir datos entre los controladores
 	function StorageFactory()
 	{
     var storage = {
+        capitulosEdit: {}, // Objeto para guardar los capitulos a editar
     	categories: {}, // Objeto para almacenas categorias
     	categoryEdit: '', // titulo de la categoria a editar
+        chapters: {}, // Objeto para almacenar los capitulos
+        chapterEdit: {}, // Objeto para almacenar el capitulo a editar
     	courses: {}, // Objeto para almacenar los cursos
     	courseEdit: {}, // Objeto para almacenar un curso en especifico
     	user: {

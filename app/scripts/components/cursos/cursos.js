@@ -38,38 +38,17 @@ Webcomponent para cursos
 			courseService.deleteCourse(id);
 		};
 
+		// Configuracion del curso
+		vm.previewCourse = function (id)
+		{
+			$location.url('/courses/preview/' + id);	
+		};
+
 		// Editamos un curso
 		vm.editCourse = function (id)
 		{
 			$location.url('/courses/edit/' + id);
 		};
-
-		// Ventana modal para publicar
-		$('#bs-publicar-modal-lg').on('show.bs.modal', function (event) {
-			var button = $(event.relatedTarget) // Button that triggered the modal
-  			var id = button.data('id') // Extract info from data-* attributes
-
-			var modal = $(this);
-			modal.find('.modal-title').text('New message to '+id);
-		});
-
-		// Ventana modal para estadistica
-		$('#bs-estadistica-modal-lg').on('show.bs.modal', function () {
-			var button = $(event.relatedTarget) // Button that triggered the modal
-  			var id = button.data('id') // Extract info from data-* attributes
-
-			var modal = $(this);
-			modal.find('.modal-title').text('New message to '+id);
-		});
-
-		// Ventana modal para mensajes
-		$('#bs-mensaje-modal-lg').on('show.bs.modal', function () {
-			var button = $(event.relatedTarget) // Button that triggered the modal
-  			var id = button.data('id') // Extract info from data-* attributes
-
-			var modal = $(this);
-			modal.find('.modal-title').text('New message to '+id);
-		});
 
 		// Ponemos los cambios en escucha
 		$scope.$watch(vm.courseWatch);

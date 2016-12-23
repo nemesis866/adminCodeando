@@ -1,0 +1,73 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">Cursos</h3>
+	</div>
+	<div class="panel-body">
+		<ul class="nav nav-tabs">
+			<li role="presentation"><a href="/courses">Cursos</a></li>
+			<li role="presentation"><a href="/courses/new">Nuevo</a></li>
+			<li role="presentation" class="active"><a href="#">Preview</a></li>
+		</ul>
+		<br/>
+		<div class="alert alert-info" role="alert">
+			<p><span class="glyphicon glyphicon-info-sign" aria-hidden="true"> En esta sección usted podra previsualizar el curso "{{ $ctrl.titulo }}".</p>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-xl-12">
+					<div class="panel panel-default">
+					  	<div class="panel-heading">Capitulos</div>
+					  	<div class="panel-body">
+					  		<p>
+					  			<button type="button" class="btn btn-success btn-xs">
+					  				<span class="glyphicon glyphicon-new-window"></span> Nuevo capitulo
+					  			</button>
+					  		</p>
+					    	<div class="list-group">
+		  						<a href="#" class="list-group-item list-group-item-default">
+		  							Capitulo 1<span class="badge">14</span>
+		  							<p class="text-right">
+		  								<button type="button" class="btn btn-warning btn-xs">
+							  				<span class="glyphicon glyphicon-pencil"></span> Editar
+							  			</button>
+							  			<button type="button" class="btn btn-danger btn-xs">
+							  				<span class="glyphicon glyphicon-trash"></span> Eliminar
+							  			</button>
+		  							</p>
+		  						</a>
+		  					</div>	
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6 col-xl-12">
+					<div class="panel panel-default">
+					  	<div class="panel-heading">Temas</div>
+					  	<div class="panel-body">
+					  		<p>
+						  		<button type="button" class="btn btn-success btn-xs">
+					  				<span class="glyphicon glyphicon-new-window"></span> Nuevo tema
+					  			</button>
+				  			</p>
+					    	<div class="list-group">
+		  						<a href="#" class="list-group-item list-group-item-default">
+		  							Tema 1<span class="badge">14</span>
+		  							<p class="text-right">
+		  								<button type="button" class="btn btn-default btn-xs">
+							  				<span class="glyphicon glyphicon-cog"></span> preview
+							  			</button>
+		  								<button type="button" class="btn btn-warning btn-xs">
+							  				<span class="glyphicon glyphicon-pencil"></span> Editar
+							  			</button>
+							  			<button type="button" class="btn btn-danger btn-xs">
+							  				<span class="glyphicon glyphicon-trash"></span> Eliminar
+							  			</button>
+		  							</p>
+		  						</a>
+		  					</div>	
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

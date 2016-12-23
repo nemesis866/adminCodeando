@@ -15,6 +15,7 @@ Webcomponent para menu de la app
 		vm.inicio = { active: true };
 		vm.cursos = { active: false };
 		vm.categorias = { active: false };
+		vm.admin = { active: false };
 
 		// cambios de menu
 		vm.change = function (id)
@@ -25,16 +26,25 @@ Webcomponent para menu de la app
 					vm.inicio = { active: true };
 					vm.cursos = { active: false };
 					vm.categorias = { active: false };
+					vm.admin = { active: false };
 					break;
 				case 1:
 					vm.inicio = { active: false };
 					vm.cursos = { active: true };
 					vm.categorias = { active: false };
+					vm.admin = { active: false };
 					break;
 				case 2:
 					vm.inicio = { active: false };
 					vm.cursos = { active: false };
 					vm.categorias = { active: true };
+					vm.admin = { active: false };
+					break;
+				case 3:
+					vm.inicio = { active: false };
+					vm.cursos = { active: false };
+					vm.categorias = { active: false };
+					vm.admin = { active: true };
 					break;
 			}
 		};
@@ -46,6 +56,7 @@ Webcomponent para menu de la app
 			case 'init': vm.change(0); break;
 			case 'courses': vm.change(1); break;
 			case 'categories': vm.change(2); break;
+			case 'admin': vm.change(3); break;
 		}
 	}
 
