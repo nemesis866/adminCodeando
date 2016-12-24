@@ -44,3 +44,24 @@ Servicio para obtener los capitulo
 				ChapterExtraResource
 			]);
 })();
+
+// Recurso para obtener los capitulos de un curso en especifico
+(function (){
+	'use strict';
+
+	function ChapterCourseResource ($resource)
+	{
+		var url = 'http://127.0.0.1:5000/chapters/course/:id';
+
+		return $resource(url, {}, {
+			'update': { method: 'PUT' }
+		});
+	}
+
+	angular
+		.module('app')
+			.service('chapterCourseResource', [
+				'$resource',
+				ChapterCourseResource
+			]);
+})();

@@ -68,21 +68,17 @@ Servicio para procesar categorias
 				control = 1;
 
 				// Validamos que ningun campo este vacio
-				if(model.titulo.length >= 3){
-					// Enviamos el recurso
-					categoryResource.save({
-						titulo: model.titulo,
-					}, success, error);
-
-					return 1;
-				} else {
-					var msgField = 'El nombre debe tener al menos 3 caracteres';
-					fncService.error(msgField);
-
-					// Resetemoas el control
+				if(fncService.checkInput(model.titulo, 3, 'nombre')) {
 					control = 0;
 					return 0;
 				}
+
+				// Enviamos el recurso
+				categoryResource.save({
+					titulo: model.titulo,
+				}, success, error);
+
+				return 1;
 			}
 		};
 

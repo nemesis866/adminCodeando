@@ -19,13 +19,13 @@
 					  	<div class="panel-heading">Capitulos</div>
 					  	<div class="panel-body">
 					  		<p>
-					  			<button type="button" class="btn btn-success btn-xs">
+					  			<button type="button" class="btn btn-success btn-xs" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#bs-capitulo-nuevo-modal-lg" data-id="{{ $ctrl.param }}">
 					  				<span class="glyphicon glyphicon-new-window"></span> Nuevo capitulo
 					  			</button>
 					  		</p>
-					    	<div class="list-group">
-		  						<a href="#" class="list-group-item list-group-item-default">
-		  							Capitulo 1<span class="badge">14</span>
+					    	<div class="list-group" ng-class="$ctrl.viewList">
+		  						<a ng-repeat="chapter in $ctrl.chapters | orderBy:'orden':false" href="#" class="list-group-item list-group-item-default">
+		  							{{ chapter.titulo }}<span class="badge">0</span>
 		  							<p class="text-right">
 		  								<button type="button" class="btn btn-warning btn-xs">
 							  				<span class="glyphicon glyphicon-pencil"></span> Editar
@@ -36,6 +36,9 @@
 		  							</p>
 		  						</a>
 		  					</div>	
+		  					<div class="alert alert-warning" role="alert" ng-class="$ctrl.viewMsg">
+								<p><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"> Lo sentimos aun no tiene capitulos en este curso.</p>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -71,3 +74,5 @@
 		</div>
 	</div>
 </div>
+
+<curso-preview-nuevo-capitulo></curso-preview-nuevo-capitulo>
