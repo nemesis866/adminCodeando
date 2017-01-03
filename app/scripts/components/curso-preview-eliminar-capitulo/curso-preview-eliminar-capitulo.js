@@ -1,26 +1,20 @@
 /*************************************
-Webcomponent para curso modal crear capitulo
+Webcomponent para curso modal eliminar capitulo
 *************************************/
 
 (function (){
 	'use strict';
 
 	// Controlador
-	function CursoPreviewNuevoCapitulo (chapterService)
+	function CursoPreviewEliminarCapitulo (chapterService)
 	{
 		var vm = this;
 		vm.control = 0; // Control para la ventana modal
 
 		// Guardamos un capitulo
-		vm.setChapter = function (model)
+		vm.deleteChapter = function ()
 		{
-			// Acciones para model
-			if(typeof(model) === 'undefined'){
-				model = {};
-				model.titulo = '';
-			}
-
-			var control = chapterService.setChapter(model, vm.cursoId);
+			var control = chapterService.deleteChapter(vm.chapterId);
 
 			// Verificamos el control
 			if(control === 1){
@@ -36,22 +30,22 @@ Webcomponent para curso modal crear capitulo
 			vm.control = 1;
 
 			// Cerramos
-			$('#bs-capitulo-nuevo-modal-lg').modal('hide');
+			$('#bs-capitulo-eliminar-modal-lg').modal('hide');
 
 			// Actualizamos el control
 			vm.control = 0;
 		};
 
 		// Ventana modal para formulario de capitulo
-		$('#bs-capitulo-nuevo-modal-lg').on('show.bs.modal', function (event) {
+		$('#bs-capitulo-eliminar-modal-lg').on('show.bs.modal', function (event) {
 			var button = $(event.relatedTarget); // Button that triggered the modal
   			var id = button.data('id'); // Extract info from data-* attributes
 
-			vm.cursoId = id; // Guardamos el ID del modal abierto
+			vm.chapterId = id; // Guardamos el ID del modal abierto
 		});
 
 		// Evento llamado antes de cerrar la ventana
-		$('#bs-capitulo-nuevo-modal-lg').on('hide.bs.modal', function (event) {
+		$('#bs-capitulo-eliminar-modal-lg').on('hide.bs.modal', function (event) {
 			// Verificamos el control
 			if(vm.control === 0){
 				// Evitamos que la ventana se cierre
@@ -61,15 +55,15 @@ Webcomponent para curso modal crear capitulo
 	}
 
 	// Configuracion del web component
-	var cursoPreviewNuevoCapitulo = {
-		templateUrl: './scripts/components/curso-preview-nuevo-capitulo/curso-preview-nuevo-capitulo.html',
+	var cursoPreviewEliminarCapitulo = {
+		templateUrl: './scripts/components/curso-preview-eliminar-capitulo/curso-preview-eliminar-capitulo.html',
 		controller: [
 			'chapterService',
-			CursoPreviewNuevoCapitulo
+			CursoPreviewEliminarCapitulo
 		]
 	};
 
 	angular
 		.module('app')
-			.component('cursoPreviewNuevoCapitulo', cursoPreviewNuevoCapitulo); // El nombre debe estar con camel case
+			.component('cursoPreviewEliminarCapitulo', cursoPreviewEliminarCapitulo); // El nombre debe estar con camel case
 })();

@@ -30,7 +30,7 @@
 		  								<button type="button" class="btn btn-warning btn-xs">
 							  				<span class="glyphicon glyphicon-pencil"></span> Editar
 							  			</button>
-							  			<button type="button" class="btn btn-danger btn-xs">
+							  			<button type="button" class="btn btn-danger btn-xs" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#bs-capitulo-eliminar-modal-lg" data-id="{{ chapter._id }}">
 							  				<span class="glyphicon glyphicon-trash"></span> Eliminar
 							  			</button>
 		  							</p>
@@ -76,3 +76,4 @@
 </div>
 
 <curso-preview-nuevo-capitulo></curso-preview-nuevo-capitulo>
+<curso-preview-eliminar-capitulo></curso-preview-eliminar-capitulo>

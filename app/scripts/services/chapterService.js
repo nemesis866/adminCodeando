@@ -89,9 +89,40 @@ Servicio para procesar capitulos
 		};
 
 		// Eliminamos el capitulo
-		this.deleteChapter = function ()
+		this.deleteChapter = function (id)
 		{
-			
+			// Callback en caso de exito
+			function success (data)
+			{
+				var i = 0;
+
+				// Actualizamos el control
+				control = 0;
+
+				// Mostramos mensaje de exito
+				var msgSuccess = 'El capitulo se elimino con exito';
+				fncService.success(msgSuccess);
+
+				// Quitamos el curso del objeto
+				for(i; i < storageFactory.chapters.length; i++){
+					if(storageFactory.chapters[i]._id === data._id){
+						break;
+					}
+				}
+				storageFactory.chapters.splice(i, 1);
+			}
+
+			if(control === 0){
+				// Actualizamos el control
+				control = 1;
+
+				// Eliminamos el curso
+				chapterExtraResource.delete({
+					id: id,
+				}, success, error);
+			}
+
+			return 1;	
 		};
 
 		// Obtenemos un capitulo en especifico
