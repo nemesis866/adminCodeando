@@ -152,9 +152,59 @@ Servicio para procesar capitulos
 		};
 
 		// Actualizamos un capitulo
-		this.updateChapter = function ()
+		this.updateChapter = function (model, id)
 		{
-	
+			// Callback en caso de exito
+			function success (data)
+			{
+				// Actualizamos el control
+				control = 0;
+
+				// Mostramos mensaje de exito
+				var msgSuccess = 'El capitulo se edito con exito';
+				fncService.success(msgSuccess);
+
+				// Limpiamos los campos del formulario
+				model.titulo = '';
+
+				// Actualizamos el objeto de capitulos
+				for(var i = 0; i < storageFactory.chapters.length; i++){
+					if(storageFactory.chapters[i]._id === data._id){
+						storageFactory.chapters[i].titulo = data.titulo;
+					}
+				}
+			}
+
+			// verificamos que el control este disponible
+			if(control === 0){
+				// actualizamos el control
+				control = 1;
+
+				// Validamos que ningun campo este vacio
+				if(fncService.checkInput(model.titulo, 3, 'titulo')) {
+					control = 0;
+					return 0;
+				}
+
+				// Obtenemos el orden del capitulo
+				var orden = 0;
+
+				for(var i = 0; i < storageFactory.chapters.length; i++){
+					if(storageFactory.chapters[i]._id === id){
+						orden = storageFactory.chapters[i].orden;
+						break;
+					}
+				}
+
+				// Enviamos el recurso
+				chapterExtraResource.update({
+					id: id,
+					orden: orden,
+					titulo: model.titulo,
+				}, success, error);
+
+				return 1;
+			}
 		};
 	}
 

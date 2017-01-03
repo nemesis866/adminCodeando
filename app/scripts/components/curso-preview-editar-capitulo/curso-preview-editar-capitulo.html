@@ -1,0 +1,28 @@
+<div class="modal fade" id="bs-capitulo-editar-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+	<div class="modal-dialog modal-lg" role="document">
+    	<div class="modal-content">
+    		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="$ctrl.closeChapter()"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title">Editar capitulo</h4>
+      		</div>
+    		<div class="modal-body">
+    			<div class="alert alert-info" role="alert">
+					<p><span class="glyphicon glyphicon-info-sign" aria-hidden="true"> Solo podra editar el titulo del capitulo, para ordenarlo puede arrastrarlo a la posicion requerida.</p>
+				</div>
+                <form id="form_chapter" validate>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Capitulo</span>
+                        <input type="text" id="editChapter" ng-model="form.titulo" name="titulo" class="form-control" placeholder="Ingrese el titulo del capitulo" maxlength="60" aria-describedby="basic-addon1" ng-required="$ctrl.formConfig.required">
+                    </div>
+                    <span class = "help-block text-right">
+                        Limite de 60 caracteres
+                    </span>
+                </form>
+    		</div>
+    		<div class="modal-footer">
+        		<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="$ctrl.closeChapter()">Cerrar</button>
+        		<button type="button" class="btn btn-success" ng-class="$ctrl.viewForm" data-dismiss="modal" ng-click="$ctrl.updateChapter(form)" ng-disabled="form_chapter.$invalid">Guardar</button>
+    		</div>
+    	</div>
+	</div>
+</div>

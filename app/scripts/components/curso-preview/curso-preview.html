@@ -27,7 +27,7 @@
 		  						<a ng-repeat="chapter in $ctrl.chapters | orderBy:'orden':false" href="#" class="list-group-item list-group-item-default">
 		  							{{ chapter.titulo }}<span class="badge">0</span>
 		  							<p class="text-right">
-		  								<button type="button" class="btn btn-warning btn-xs">
+		  								<button type="button" class="btn btn-warning btn-xs" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#bs-capitulo-editar-modal-lg" data-id="{{ chapter._id }}">
 							  				<span class="glyphicon glyphicon-pencil"></span> Editar
 							  			</button>
 							  			<button type="button" class="btn btn-danger btn-xs" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#bs-capitulo-eliminar-modal-lg" data-id="{{ chapter._id }}">
@@ -77,3 +77,4 @@
 
 <curso-preview-nuevo-capitulo></curso-preview-nuevo-capitulo>
 <curso-preview-eliminar-capitulo></curso-preview-eliminar-capitulo>
+<curso-preview-editar-capitulo></curso-preview-editar-capitulo>
