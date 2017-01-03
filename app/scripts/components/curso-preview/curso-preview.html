@@ -47,10 +47,10 @@
 				</div>
 				<div class="col-lg-6 col-md-6 col-xl-12">
 					<div class="panel panel-default">
-					  	<div class="panel-heading">Temas</div>
+					  	<div class="panel-heading">Temas {{ $ctrl.chapterTitle }}</div>
 					  	<div class="panel-body" ng-class="$ctrl.viewListTheme">
 					  		<p>
-						  		<button type="button" class="btn btn-success btn-xs">
+						  		<button type="button" class="btn btn-success btn-xs" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#bs-tema-nuevo-modal-lg" data-curso="{{ $ctrl.param }}" data-capitulo="{{ $ctrl.chapter }}">
 					  				<span class="glyphicon glyphicon-new-window"></span> Nuevo tema
 					  			</button>
 				  			</p>
@@ -76,7 +76,7 @@
 						</div>
 						<div class="panel-body" ng-class="$ctrl.viewMsgTheme">
 							<div class="alert alert-info" role="alert">
-								<p><span class="glyphicon glyphicon-info-sign" aria-hidden="true"> Debes seleccionar un capitulo del lado izquierdo.</p>
+								<p><span class="glyphicon glyphicon-info-sign" aria-hidden="true"> Debes seleccionar un capitulo del lado izquierdo, da clic en "Preview"</p>
 							</div>
 						</div>
 					</div>
@@ -89,3 +89,5 @@
 <curso-preview-nuevo-capitulo></curso-preview-nuevo-capitulo>
 <curso-preview-eliminar-capitulo></curso-preview-eliminar-capitulo>
 <curso-preview-editar-capitulo></curso-preview-editar-capitulo>
+
+<curso-preview-nuevo-tema></curso-preview-nuevo-tema>

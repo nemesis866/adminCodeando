@@ -1,0 +1,28 @@
+<div class="modal fade" id="bs-tema-nuevo-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+	<div class="modal-dialog modal-lg" role="document">
+    	<div class="modal-content">
+    		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="$ctrl.closeTheme()"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title">Crear tema</h4>
+      		</div>
+    		<div class="modal-body">
+    			<div class="alert alert-info" role="alert">
+					<p><span class="glyphicon glyphicon-info-sign" aria-hidden="true"> Al crear el tema, este aparecera al final de la lista de temas, puede ordenarlo arrastrandolo a la posición requerida.</p>
+				</div>
+                <form id="form_theme" validate>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Tema</span>
+                        <input id="themeTitle" type="text" ng-model="form.titulo" name="titulo" class="form-control" placeholder="Ingrese el titulo del tema" maxlength="60" aria-describedby="basic-addon1" ng-required="$ctrl.formConfig.required">
+                    </div> 
+                    <span class = "help-block text-right">
+                        Limite de 60 caracteres
+                    </span>
+                </form>
+    		</div>
+    		<div class="modal-footer">
+        		<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="$ctrl.closeTheme()">Cerrar</button>
+        		<button type="button" class="btn btn-success" ng-class="$ctrl.viewForm" data-dismiss="modal" ng-click="$ctrl.setTheme(form)" ng-disabled="form_theme.$invalid">Guardar</button>
+    		</div>
+    	</div>
+	</div>
+</div>

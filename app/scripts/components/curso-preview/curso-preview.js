@@ -6,7 +6,7 @@ Webcomponent para preview del curso
 	'use strict';
 
 	// Controlador
-	function CursoPreview ($routeParams, $scope, storageFactory, categoryService, chapterService, courseService, fncService)
+	function CursoPreview ($routeParams, $scope, storageFactory, categoryService, chapterService, courseService, themeService, fncService)
 	{
 		var vm = this;
 		vm.param = $routeParams.id;
@@ -42,6 +42,8 @@ Webcomponent para preview del curso
 			vm.chapters = storageFactory.chapters;
 			// Obtenemos los temas del capitulo
 			vm.themes = storageFactory.themes;
+			// Obtenemos el ID del capitulo
+			vm.chapter = storageFactory.chapterID;
 
 			// Verificamos si hay capitulo
 			if(!fncService.isEmpty(vm.chapters)){
@@ -51,8 +53,10 @@ Webcomponent para preview del curso
 
 			// Verificamos si hay temas
 			if(!fncService.isEmpty(vm.themes)){
+				// Si hay temas
 				vm.viewMsg2Theme = { oculto: true };
 			} else {
+				// Si no hay temas
 				vm.viewMsg2Theme = { oculto: false };
 			}
 		};
@@ -63,6 +67,19 @@ Webcomponent para preview del curso
 			// Mostramos la lista de temas
 			vm.viewListTheme = { oculto: false };
 			vm.viewMsgTheme = { oculto: true };
+
+			// Obtenemos el titulo del capitulo
+			for(var i = 0; i < storageFactory.chapters.length; i++){
+				if(storageFactory.chapters[i]._id === id){
+					vm.chapterTitle = '"'+storageFactory.chapters[i].titulo+'"';
+				}
+			}
+
+			// Guardamos el ID del capitulo
+			storageFactory.chapterID = id;
+
+			// Obtenemos los temas del capitulo
+			storageFactory.themes = themeService.getByIdChapter(id, vm.param);
 		};
 
 		// En escucha de cambios
@@ -79,6 +96,7 @@ Webcomponent para preview del curso
 				'categoryService',
 				'chapterService',
 				'courseService',
+				'themeService',
 				'fncService',
 				CursoPreview
 			]

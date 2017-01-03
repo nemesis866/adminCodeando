@@ -11,6 +11,12 @@ Webcomponent para curso modal crear capitulo
 		var vm = this;
 		vm.control = 0; // Control para la ventana modal
 
+		// Configuración del formulario
+		vm.formConfig = {
+			required: true,
+			pattern: '/^[a-zA-Z]{3,60}$/'
+		};
+
 		// Guardamos un capitulo
 		vm.setChapter = function (model)
 		{
