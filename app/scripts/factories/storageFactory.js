@@ -15,6 +15,7 @@ Factory para compartir datos entre los controladores
         chapterEdit: {}, // Objeto para almacenar el capitulo a editar
     	courses: {}, // Objeto para almacenar los cursos
     	courseEdit: {}, // Objeto para almacenar un curso en especifico
+        themes: {}, // Objeto para almacenar los temas de un capitulo
     	user: {
     		id: 1234567890, // ID del usuario
     		name: 'Paulo Andrade', // Nombre del usuario

@@ -20,8 +20,11 @@ Webcomponent para preview del curso
 		chapterService.getByIdCourse(vm.param);
 
 		// Maneja de la clase oculto
-		vm.viewList = { oculto: true };
-		vm.viewMsg = { oculto: false };
+		vm.viewList = { oculto: true }; // Lista capitulos
+		vm.viewMsg = { oculto: false }; // msg capitulo
+		vm.viewListTheme = { oculto: true }; // Lista temas
+		vm.viewMsgTheme = { oculto: false }; // msg seleccionar capitulo
+		vm.viewMsg2Theme = { oculto: false }; // msg temas
 
 		// Configuración del formulario
 		vm.formConfig = {
@@ -37,12 +40,29 @@ Webcomponent para preview del curso
 			vm.titulo = storageFactory.courseEdit.titulo;
 			// Obtenemos los capitulos del curso
 			vm.chapters = storageFactory.chapters;
+			// Obtenemos los temas del capitulo
+			vm.themes = storageFactory.themes;
 
 			// Verificamos si hay capitulo
 			if(!fncService.isEmpty(vm.chapters)){
 				vm.viewList = { oculto: false };
 				vm.viewMsg = { oculto: true };
 			}
+
+			// Verificamos si hay temas
+			if(!fncService.isEmpty(vm.themes)){
+				vm.viewMsg2Theme = { oculto: true };
+			} else {
+				vm.viewMsg2Theme = { oculto: false };
+			}
+		};
+
+		// Mostramos la lista de temas del capitulo seleccionado
+		vm.previewTheme = function (id)
+		{
+			// Mostramos la lista de temas
+			vm.viewListTheme = { oculto: false };
+			vm.viewMsgTheme = { oculto: true };
 		};
 
 		// En escucha de cambios

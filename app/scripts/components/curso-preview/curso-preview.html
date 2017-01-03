@@ -27,6 +27,9 @@
 		  						<a ng-repeat="chapter in $ctrl.chapters | orderBy:'orden':false" href="#" class="list-group-item list-group-item-default">
 		  							{{ chapter.titulo }}<span class="badge">0</span>
 		  							<p class="text-right">
+		  								<button type="button" class="btn btn-default btn-xs" ng-click="$ctrl.previewTheme(chapter._id)">
+							  				<span class="glyphicon glyphicon-cog"></span> preview
+							  			</button>
 		  								<button type="button" class="btn btn-warning btn-xs" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#bs-capitulo-editar-modal-lg" data-id="{{ chapter._id }}">
 							  				<span class="glyphicon glyphicon-pencil"></span> Editar
 							  			</button>
@@ -45,15 +48,15 @@
 				<div class="col-lg-6 col-md-6 col-xl-12">
 					<div class="panel panel-default">
 					  	<div class="panel-heading">Temas</div>
-					  	<div class="panel-body">
+					  	<div class="panel-body" ng-class="$ctrl.viewListTheme">
 					  		<p>
 						  		<button type="button" class="btn btn-success btn-xs">
 					  				<span class="glyphicon glyphicon-new-window"></span> Nuevo tema
 					  			</button>
 				  			</p>
 					    	<div class="list-group">
-		  						<a href="#" class="list-group-item list-group-item-default">
-		  							Tema 1<span class="badge">14</span>
+		  						<a ng-repeat="theme in $ctrl.themes | orderBy:'orden':false" href="#" class="list-group-item list-group-item-default">
+		  							{{ theme.titulo }}<span class="badge">14</span>
 		  							<p class="text-right">
 		  								<button type="button" class="btn btn-default btn-xs">
 							  				<span class="glyphicon glyphicon-cog"></span> preview
@@ -66,7 +69,15 @@
 							  			</button>
 		  							</p>
 		  						</a>
-		  					</div>	
+		  					</div>
+		  					<div class="alert alert-info" role="alert" ng-class="$ctrl.viewMsg2Theme">
+								<p><span class="glyphicon glyphicon-info-sign" aria-hidden="true"> Lo sentimos aun no tiene temas en este capitulo.</p>
+							</div>	
+						</div>
+						<div class="panel-body" ng-class="$ctrl.viewMsgTheme">
+							<div class="alert alert-info" role="alert">
+								<p><span class="glyphicon glyphicon-info-sign" aria-hidden="true"> Debes seleccionar un capitulo del lado izquierdo.</p>
+							</div>
 						</div>
 					</div>
 				</div>
