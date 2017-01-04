@@ -90,7 +90,7 @@ Servicio para procesar capitulos
 		};
 
 		// Eliminamos el tema
-		this.deleteChapter = function (id)
+		this.deleteTheme = function (id)
 		{
 			// Callback en caso de exito
 			function success (data)

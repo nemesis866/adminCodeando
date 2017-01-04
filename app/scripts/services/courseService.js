@@ -5,7 +5,7 @@ Servicio para procesar cursos
 (function (){
 	'use strict';
 
-	function CourseService ($location, courseResource, courseAutorResource,courseExtraResource, storageFactory, fncService)
+	function CourseService ($location, $timeout, courseResource, courseAutorResource,courseExtraResource, storageFactory, fncService)
 	{
 		var control = 0;
 
@@ -71,7 +71,7 @@ Servicio para procesar cursos
 				}
 
 				// Redireccionamos
-				setTimeout(function (){
+				$timeout(function (){
 					$location.url('/courses');
 				}, 2000);
 			}
@@ -212,7 +212,7 @@ Servicio para procesar cursos
 				}
 
 				// Redireccionamos
-				setTimeout(function (){
+				$timeout(function (){
 					$location.url('/courses');
 				}, 2000);
 			}
@@ -277,6 +277,7 @@ Servicio para procesar cursos
 		.module('app')
 			.service('courseService', [
 				'$location',
+				'$timeout',
 				'courseResource',
 				'courseAutorResource',
 				'courseExtraResource',

@@ -1,0 +1,42 @@
+<div class="modal fade" id="bs-preview-tema-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+	<div class="modal-dialog modal-lg" role="document">
+    	<div class="modal-content">
+    		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="$ctrl.closeTheme()"><span aria-hidden="true">&times;</span></button>
+        		<h4 id="themePreviewTitle" class="modal-title"></h4>
+      		</div>
+    		<div class="modal-body">
+    			<ul class="nav nav-tabs">
+                    <li role="presentation" ng-class="$ctrl.info" ng-click="$ctrl.change(0)"><a href="#">Información</a></li>
+                    <li role="presentation" ng-class="$ctrl.doc" ng-click="$ctrl.change(1)"><a href="#">Documentación</a></li>
+                    <li role="presentation" ng-class="$ctrl.vid" ng-click="$ctrl.change(2)"><a href="#">Video</a></li>
+                    <li role="presentation" ng-class="$ctrl.git" ng-click="$ctrl.change(3)"><a href="#">Github</a></li>
+                </ul>
+                <br>
+                <div ng-class="$ctrl.viewInfo">
+                    <div class="alert alert-info" role="alert">
+                        <p><span class="glyphicon glyphicon-info-sign" aria-hidden="true"> La información sera mostrada en la parte posterior del video, esta debe ser de apoyo al contenido del video.</p>
+                    </div>
+                </div>
+                <div ng-class="$ctrl.viewDoc">
+                    <div class="alert alert-info" role="alert">
+                        <p><span class="glyphicon glyphicon-info-sign" aria-hidden="true"> En la documentación debe abarcar todos (o la mayoria) los conceptos teoricos del material utilizado en el video.</p>
+                    </div>
+                </div>
+                <div ng-class="$ctrl.viewVid">
+                    <div class="alert alert-info" role="alert">
+                        <p><span class="glyphicon glyphicon-info-sign" aria-hidden="true"> En esta sección podrá guardar la url del video a mostrar en el tema (por el momento solo soporta video de youtube).</p>
+                    </div>
+                </div>
+                <div ng-class="$ctrl.viewGit">
+                    <div class="alert alert-info" role="alert">
+                        <p><span class="glyphicon glyphicon-info-sign" aria-hidden="true"> En esta sección podrá guardar la url del repositorio de github que contiene el ejemplo explicado en el video, de no contar con el, solo deje en blanco.</p>
+                    </div>
+                </div>
+    		</div>
+    		<div class="modal-footer">
+        		<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="$ctrl.closeTheme()">Cerrar</button>
+    		</div>
+    	</div>
+	</div>
+</div>

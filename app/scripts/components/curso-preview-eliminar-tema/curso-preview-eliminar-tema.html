@@ -1,0 +1,20 @@
+<div class="modal fade" id="bs-tema-eliminar-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+	<div class="modal-dialog modal-lg" role="document">
+    	<div class="modal-content">
+    		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="$ctrl.closeTheme()"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title">Eliminar tema</h4>
+      		</div>
+    		<div class="modal-body">
+    			<div class="alert alert-warning" role="alert" ng-class="$ctrl.viewMsg">
+                    <p><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"> Al eliminar el tema se eliminaran toda la información y/o documentación que contenga.</p>
+				</div>
+                <p>Esta seguro de eliminar el tema?</p>
+    		</div>
+    		<div class="modal-footer">
+        		<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="$ctrl.closeTheme()">Cerrar</button>
+        		<button type="button" class="btn btn-danger" ng-class="$ctrl.viewForm" data-dismiss="modal" ng-click="$ctrl.deleteTheme()" ng-disabled="form_theme.$invalid">Eliminar</button>
+    		</div>
+    	</div>
+	</div>
+</div>
