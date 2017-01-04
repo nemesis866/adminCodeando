@@ -13,7 +13,7 @@ Webcomponent para cursos
 		// Cambiamos el titulo
 		document.title = 'Cursos | Codeando.org';
 
-		// Obtenemos las categorias
+		// Obtenemos los cursos
 		courseService.getCourse();
 
 		// cursos disponibles

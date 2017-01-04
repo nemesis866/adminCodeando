@@ -6,7 +6,7 @@ Webcomponent para curso modal eliminar capitulo
 	'use strict';
 
 	// Controlador
-	function CursoPreviewEliminarCapitulo (chapterService)
+	function CursoPreviewEliminarCapitulo (storageFactory, chapterService)
 	{
 		var vm = this;
 		vm.control = 0; // Control para la ventana modal
@@ -20,6 +20,10 @@ Webcomponent para curso modal eliminar capitulo
 			if(control === 1){
 				// Cerramos la ventana modal
 				vm.closeChapter();
+				// Reestablecemos temas
+				storageFactory.chapterClass = { oculto : false };
+				storageFactory.themeClass = { oculto: true };
+				storageFactory.themeHeader = '';
 			}
 		};
 
@@ -58,6 +62,7 @@ Webcomponent para curso modal eliminar capitulo
 	var cursoPreviewEliminarCapitulo = {
 		templateUrl: './scripts/components/curso-preview-eliminar-capitulo/curso-preview-eliminar-capitulo.html',
 		controller: [
+			'storageFactory',
 			'chapterService',
 			CursoPreviewEliminarCapitulo
 		]

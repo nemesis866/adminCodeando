@@ -25,7 +25,7 @@
 					  		</p>
 					    	<div class="list-group" ng-class="$ctrl.viewList">
 		  						<a ng-repeat="chapter in $ctrl.chapters | orderBy:'orden':false" href="#" class="list-group-item list-group-item-default">
-		  							{{ chapter.titulo }}<span class="badge">0</span>
+		  							{{ chapter.titulo }}<span class="badge">{{ chapter.themes }}</span>
 		  							<p class="text-right">
 		  								<button type="button" class="btn btn-default btn-xs" ng-click="$ctrl.previewTheme(chapter._id)">
 							  				<span class="glyphicon glyphicon-cog"></span> preview
@@ -56,7 +56,7 @@
 				  			</p>
 					    	<div class="list-group">
 		  						<a ng-repeat="theme in $ctrl.themes | orderBy:'orden':false" href="#" class="list-group-item list-group-item-default">
-		  							{{ theme.titulo }}<span class="badge">14</span>
+		  							{{ theme.titulo }}
 		  							<p class="text-right">
 		  								<button type="button" class="btn btn-default btn-xs">
 							  				<span class="glyphicon glyphicon-cog"></span> preview

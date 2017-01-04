@@ -44,3 +44,24 @@ Servicio para obtener los cursos
 				CourseExtraResource
 			]);
 })();
+
+// Recurso para GET (uno solo) y DELETE extras
+(function (){
+	'use strict';
+
+	function CourseAutorResource ($resource)
+	{
+		var url = 'http://127.0.0.1:5000/cursos/autor/:id';
+
+		return $resource(url, {}, {
+			'update': { method: 'PUT' }
+		});
+	}
+
+	angular
+		.module('app')
+			.service('courseAutorResource', [
+				'$resource',
+				CourseAutorResource
+			]);
+})();

@@ -5,7 +5,7 @@ Servicio para procesar cursos
 (function (){
 	'use strict';
 
-	function CourseService ($location, courseResource, courseExtraResource, storageFactory, fncService)
+	function CourseService ($location, courseResource, courseAutorResource,courseExtraResource, storageFactory, fncService)
 	{
 		var control = 0;
 
@@ -25,12 +25,22 @@ Servicio para procesar cursos
 		{
 			// Verificamos si el objeto de los cursos esta vacio
 			if(fncService.isEmpty(storageFactory.courses)){
-				// Obtenemos el listado de cursos
-				// solo si el objeto esta vacio
-				courseResource.query({})
-				.$promise.then(function (data){
-					storageFactory.courses = data;
-				});
+				// Pedimos los cursos segun el nivel del usuario
+				if(storageFactory.user.nivel === 10){
+					// Obtenemos el listado de cursos
+					// solo si el objeto esta vacio
+					courseResource.query({})
+					.$promise.then(function (data){
+						storageFactory.courses = data;
+					});
+				} else {
+					courseAutorResource.query({
+						id: storageFactory.user.id
+					})
+					.$promise.then(function (data){
+						storageFactory.courses = data;
+					});
+				}
 			}
 		};
 
@@ -268,6 +278,7 @@ Servicio para procesar cursos
 			.service('courseService', [
 				'$location',
 				'courseResource',
+				'courseAutorResource',
 				'courseExtraResource',
 				'storageFactory',
 				'fncService',

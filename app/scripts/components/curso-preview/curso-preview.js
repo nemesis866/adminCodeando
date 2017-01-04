@@ -44,6 +44,11 @@ Webcomponent para preview del curso
 			vm.themes = storageFactory.themes;
 			// Obtenemos el ID del capitulo
 			vm.chapter = storageFactory.chapterID;
+			// Obtenemos el valor
+			vm.viewMsgTheme = storageFactory.chapterClass;
+			vm.viewListTheme = storageFactory.themeClass;
+			// Titulo de la seccion de temas
+			vm.chapterTitle = storageFactory.themeHeader;
 
 			// Verificamos si hay capitulo
 			if(!fncService.isEmpty(vm.chapters)){
@@ -64,19 +69,22 @@ Webcomponent para preview del curso
 		// Mostramos la lista de temas del capitulo seleccionado
 		vm.previewTheme = function (id)
 		{
+			// Guardamos el ID del capitulo
+			storageFactory.chapterID = id;
+			
 			// Mostramos la lista de temas
-			vm.viewListTheme = { oculto: false };
-			vm.viewMsgTheme = { oculto: true };
+			storageFactory.chapterClass = { oculto: true };
+			storageFactory.themeClass = { oculto: false };
 
 			// Obtenemos el titulo del capitulo
 			for(var i = 0; i < storageFactory.chapters.length; i++){
 				if(storageFactory.chapters[i]._id === id){
-					vm.chapterTitle = '"'+storageFactory.chapters[i].titulo+'"';
+					storageFactory.themeHeader = '"'+storageFactory.chapters[i].titulo+'"';
 				}
 			}
 
-			// Guardamos el ID del capitulo
-			storageFactory.chapterID = id;
+			// Limpiamos los temas
+			storageFactory.themes = {};
 
 			// Obtenemos los temas del capitulo
 			storageFactory.themes = themeService.getByIdChapter(id, vm.param);

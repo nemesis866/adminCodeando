@@ -6,7 +6,7 @@ Webcomponent para menu de la app
 	'use strict';
 
 	// Controlador
-	function Controller()
+	function Controller(storageFactory)
 	{
 		var vm = this;
 		var path = window.location.pathname;
@@ -58,12 +58,24 @@ Webcomponent para menu de la app
 			case 'categories': vm.change(2); break;
 			case 'admin': vm.change(3); break;
 		}
+
+		// Ocultamos menus a los no administradores
+		if(storageFactory.user.nivel === 10){
+			vm.admin = { oculto: false };
+			vm.user = { oculto: true };
+		} else {
+			vm.admin = { oculto: true };
+			vm.user = { oculto: false };
+		}
 	}
 
 	// Configuracion del web component
 	var menuPrincipal = {
 		templateUrl: './scripts/components/menu-principal/menu-principal.html',
-		controller: [Controller]
+		controller: [
+			'storageFactory',
+			Controller
+		]
 	};
 
 	angular
