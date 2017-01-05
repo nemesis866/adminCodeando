@@ -58,7 +58,7 @@
 		  						<a ng-repeat="theme in $ctrl.themes | orderBy:'orden':false" href="#" class="list-group-item list-group-item-default">
 		  							{{ theme.titulo }}
 		  							<p class="text-right">
-		  								<button type="button" class="btn btn-default btn-xs" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#bs-preview-tema-modal-lg" data-id="{{ theme._id }}">
+		  								<button type="button" class="btn btn-default btn-xs" ng-click="$ctrl.buildTheme(theme.id_curso, theme._id)">
 							  				<span class="glyphicon glyphicon-cog"></span> preview
 							  			</button>
 		  								<button type="button" class="btn btn-warning btn-xs" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#bs-tema-editar-modal-lg" data-id="{{ theme._id }}">
@@ -93,5 +93,3 @@
 <curso-preview-nuevo-tema></curso-preview-nuevo-tema>
 <curso-preview-eliminar-tema></curso-preview-eliminar-tema>
 <curso-preview-editar-tema></curso-preview-editar-tema>
-
-<curso-preview-tema></curso-preview-tema>

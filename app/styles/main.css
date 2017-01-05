@@ -100,3 +100,37 @@ Opciones para el contador en formularios
 	color: #fff;
 	padding: 5px;
 }
+
+/********************************************
+Opciones para toolbox
+********************************************/
+
+.toolbox
+{
+	background: #eee;
+	border: 1px solid #ddd;
+	border-bottom: 3px solid #ddd;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	margin-bottom: 5px;
+	padding: 10px 0;
+	width: 100%;
+}
+.toolbox span
+{
+	background: #ddd;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	padding: 5px 10px;
+	transition: all 0.5s ease-in-out;
+}
+.toolbox span:hover
+{
+	background: #bbb;
+	border: 1px solid #222;
+	cursor: pointer;
+}
+.toolbox span:first-child
+{
+	margin-left: 5px;
+}

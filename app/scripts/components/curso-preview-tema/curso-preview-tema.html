@@ -1,42 +1,54 @@
-<div class="modal fade" id="bs-preview-tema-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-	<div class="modal-dialog modal-lg" role="document">
-    	<div class="modal-content">
-    		<div class="modal-header">
-        		<button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="$ctrl.closeTheme()"><span aria-hidden="true">&times;</span></button>
-        		<h4 id="themePreviewTitle" class="modal-title"></h4>
-      		</div>
-    		<div class="modal-body">
-    			<ul class="nav nav-tabs">
-                    <li role="presentation" ng-class="$ctrl.info" ng-click="$ctrl.change(0)"><a href="#">Información</a></li>
-                    <li role="presentation" ng-class="$ctrl.doc" ng-click="$ctrl.change(1)"><a href="#">Documentación</a></li>
-                    <li role="presentation" ng-class="$ctrl.vid" ng-click="$ctrl.change(2)"><a href="#">Video</a></li>
-                    <li role="presentation" ng-class="$ctrl.git" ng-click="$ctrl.change(3)"><a href="#">Github</a></li>
-                </ul>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Cursos</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-tabs">
+            <li role="presentation"><a href="/courses">Cursos</a></li>
+            <li role="presentation"><a href="/courses/new">Nuevo</a></li>
+            <li role="presentation"><a href="/courses/preview/{{ $ctrl.curso }}">Preview</a></li>
+            <li role="presentation" class="active"><a href="#">Tema</a></li>
+        </ul>
+        <br>
+        <div class="alert alert-info" role="alert">
+            <p><span class="glyphicon glyphicon-info-sign" aria-hidden="true"> En esta sección podrá modificar el contenido del tema "{{ $ctrl.themeTitle }}", sea claro y conciso.</p>
+        </div>
+        <form id="form_theme" validate>
+            <div class="form-group">
+                <label>Información sobre el tema:</label>
+                <div class="toolbox">
+                    <span ng-click="$ctrl.toolbox(1, 'formInfo')" style="float:none;">CODE</span>
+                    <span ng-click="$ctrl.toolbox(2, 'formInfo')" title="Negrita" style="float:none;"><strong>B</strong></span>
+                    <span ng-click="$ctrl.toolbox(3, 'formInfo')" title="Cursiva" style="float:none;"><i>S</i></span>
+                    <span ng-click="$ctrl.toolbox(4, 'formInfo')" title="Subrayado" style="float:none;">S</span>
+                    <span ng-click="$ctrl.toolbox(5, 'formInfo')" title="Tachado" style="float:none;">S</span>
+                </div>
+                <textarea id="formInfo" placeholder="Ingresa aqui la información" class="form-control" rows="8" ng-model="form.info" name="info"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Documentación sobre el tema:</label>
+                <div class="toolbox">
+                    <span ng-click="$ctrl.toolbox(1, 'formDoc')" style="float:none;">CODE</span>
+                    <span ng-click="$ctrl.toolbox(2, 'formDoc')" title="Negrita" style="float:none;"><strong>B</strong></span>
+                    <span ng-click="$ctrl.toolbox(3, 'formDoc')" title="Cursiva" style="float:none;"><i>S</i></span>
+                    <span ng-click="$ctrl.toolbox(4, 'formDoc')" title="Subrayado" style="float:none;">S</span>
+                    <span ng-click="$ctrl.toolbox(5, 'formDoc')" title="Tachado" style="float:none;">S</span>
+                </div>
+                <textarea id="formDoc" placeholder="Ingresa aqui la información" class="form-control" rows="8" ng-model="form.doc" name="doc"></textarea>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Video</span>
+                <input type="text" id="formVid" ng-model="form.vid" name="vid" class="form-control" placeholder="Ingrese la url del video de youtube"aria-describedby="basic-addon1" ng-required="$ctrl.formConfig.required">
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Github</span>
+                <input type="text" id="formGit" ng-model="form.git" name="git" class="form-control" placeholder="Ingrese la url del repositorio" aria-describedby="basic-addon1" ng-required="$ctrl.formConfig.required">
+            </div>
+            <div class="text-right">
                 <br>
-                <div ng-class="$ctrl.viewInfo">
-                    <div class="alert alert-info" role="alert">
-                        <p><span class="glyphicon glyphicon-info-sign" aria-hidden="true"> La información sera mostrada en la parte posterior del video, esta debe ser de apoyo al contenido del video.</p>
-                    </div>
-                </div>
-                <div ng-class="$ctrl.viewDoc">
-                    <div class="alert alert-info" role="alert">
-                        <p><span class="glyphicon glyphicon-info-sign" aria-hidden="true"> En la documentación debe abarcar todos (o la mayoria) los conceptos teoricos del material utilizado en el video.</p>
-                    </div>
-                </div>
-                <div ng-class="$ctrl.viewVid">
-                    <div class="alert alert-info" role="alert">
-                        <p><span class="glyphicon glyphicon-info-sign" aria-hidden="true"> En esta sección podrá guardar la url del video a mostrar en el tema (por el momento solo soporta video de youtube).</p>
-                    </div>
-                </div>
-                <div ng-class="$ctrl.viewGit">
-                    <div class="alert alert-info" role="alert">
-                        <p><span class="glyphicon glyphicon-info-sign" aria-hidden="true"> En esta sección podrá guardar la url del repositorio de github que contiene el ejemplo explicado en el video, de no contar con el, solo deje en blanco.</p>
-                    </div>
-                </div>
-    		</div>
-    		<div class="modal-footer">
-        		<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="$ctrl.closeTheme()">Cerrar</button>
-    		</div>
-    	</div>
-	</div>
+                <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="$ctrl.setTheme(form)" ng-disabled="form_theme.$invalid">Guardar</button>
+            </div>
+        <form/>
+    </div>
 </div>

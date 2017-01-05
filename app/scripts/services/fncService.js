@@ -129,6 +129,51 @@ Servicio para funciones repetitivas
 			}
 			return null;
 		};
+
+		// Funcion para fijar el cursor del textarea
+		this.setCursorPosition = function (element, pos)
+		{
+		    if(element.setSelectionRange){
+		        element.setSelectionRange(pos, pos);
+		    } else if(element.createTextRange) {
+		        var range = element.createTextRange();
+		        range.collapse(true);
+		        range.moveEnd('character', pos);
+		        range.moveStart('character', pos);
+		        range.select();
+		    }
+
+		    return element;
+		};
+
+		// Funcion para obtener la posicion de un cursor en el textarea
+		this.getCursorPosition = function (elem){
+		    var pos = 0;
+		    if('selectionStart' in elem){
+		        pos = elem.selectionStart;
+		    } else if('selection' in document){
+		        elem.focus();
+		        var sel = document.selection.createRange();
+		        var selLength = document.selection.createRange().text.length;
+		        sel.moveStart('character', -elem.value.length);
+		        pos = sel.text.length - selLength;
+		    }
+		    return pos;
+		};
+
+		// Funcion para obtener el texto seleccionado de un textarea
+		this.getCursorSelection = function (elem){
+		    if('selectionStart' in elem){
+		        var startPos = elem.selectionStart;
+		        var endPos = elem.selectionEnd;
+		        return elem.value.substr(startPos, endPos - startPos);
+		    } else if('selection' in document){
+		        elem.focus();
+		        var selection = document.selection.createRange();
+		        return selection.text;
+		    }
+		};
+
 	}
 
 	angular

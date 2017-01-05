@@ -5,7 +5,7 @@ Servicio para procesar capitulos
 (function (){
 	'use strict';
 
-	function ThemeService ($location, themeResource, themeChapterResource, themeExtraResource, storageFactory, fncService)
+	function ThemeService ($location, themeResource, themeChapterResource, themeDataResource, themeExtraResource, storageFactory, fncService)
 	{
 		var control = 0;
 
@@ -134,6 +134,14 @@ Servicio para procesar capitulos
 			}, function (data)
 			{
 				storageFactory.themeEdit = data.titulo;
+				storageFactory.themeBuild = data;
+				// Informacion para editar un tema
+				if(document.getElementById('formInfo')){
+					document.getElementById('formInfo').innerHTML = data.info;
+					document.getElementById('formDoc').innerHTML = data.doc;
+					document.getElementById('formVid').innerHTML = data.video;
+					document.getElementById('formGit').innerHTML = data.github;
+				}
 			}, error);
 		};
 
@@ -204,6 +212,53 @@ Servicio para procesar capitulos
 				return 1;
 			}
 		};
+
+		// Guardamos la información de un tema
+		this.setData = function (model, id)
+		{
+			// Callback en caso de exito
+			function success (data)
+			{
+				// Actualizamos el control
+				control = 0;
+
+				// Mostramos mensaje de exito
+				var msgSuccess = 'La información se guardo con exito';
+				fncService.success(msgSuccess);
+
+				//model.info = '';
+
+				// Actualizamos el tema
+				if(!fncService.isEmpty(storageFactory.themes)){
+					for(var i = 0; i < storageFactory.themes.length; i++){
+						if(storageFactory.themes[i]._id === data._id){
+							// Actualizamos el tema en cuestion
+							storageFactory.themes[i].info = data.info;
+						}
+					}
+				}
+
+				// Actualizamos el tema actual
+				storageFactory.themeBuild.info = data.info;
+			}
+
+			// verificamos que el control este disponible
+			if(control === 0){
+				// actualizamos el control
+				control = 1;
+
+				// Enviamos el recurso
+				themeDataResource.update({
+					id: id,
+					info: model.info,
+					doc: model.doc,
+					video: model.vid,
+					github: model.git
+				}, success, error);
+
+				return 1;
+			}
+		};
 	}
 
 	angular
@@ -212,6 +267,7 @@ Servicio para procesar capitulos
 				'$location',
 				'themeResource',
 				'themeChapterResource',
+				'themeDataResource',
 				'themeExtraResource',
 				'storageFactory',
 				'fncService',

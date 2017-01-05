@@ -18,6 +18,7 @@ Factory para compartir datos entre los controladores
     	courses: {}, // Objeto para almacenar los cursos
     	courseEdit: {}, // Objeto para almacenar un curso en especifico
         themes: {}, // Objeto para almacenar los temas de un capitulo
+        themeBuild: {}, // Guardamos el tema en cuestion para construccion
         themeClass: { oculto: true }, //Guardamos el valor de la clase
         themeEdit: {}, // Objeto para almacenar un tema en especifico
         themeHeader: '', // Guardamos el titulo de la seccion de temas

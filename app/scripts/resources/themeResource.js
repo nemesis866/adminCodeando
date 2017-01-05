@@ -65,3 +65,25 @@ Servicio para obtener los temas
 				ThemeChapterResource
 			]);
 })();
+
+// Recurso para actualizar la informacion
+(function (){
+	'use strict';
+
+	function ThemeDataResource ($resource)
+	{
+		var url = 'http://127.0.0.1:5000/themes/data';
+
+		return $resource(url, {}, {
+  			'save': { method:'POST', isArray:false },
+  			'update': { method: 'PUT' }
+  		});
+	}
+
+	angular
+		.module('app')
+			.service('themeDataResource', [
+				'$resource',
+				ThemeDataResource
+			]);
+})();

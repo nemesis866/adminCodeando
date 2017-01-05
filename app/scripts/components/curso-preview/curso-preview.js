@@ -6,7 +6,7 @@ Webcomponent para preview del curso
 	'use strict';
 
 	// Controlador
-	function CursoPreview ($routeParams, $scope, storageFactory, categoryService, chapterService, courseService, themeService, fncService)
+	function CursoPreview ($location, $routeParams, $scope, storageFactory, categoryService, chapterService, courseService, themeService, fncService)
 	{
 		var vm = this;
 		vm.param = $routeParams.id;
@@ -90,6 +90,19 @@ Webcomponent para preview del curso
 			storageFactory.themes = themeService.getByIdChapter(id, vm.param);
 		};
 
+		// Redireccionamos
+		vm.buildTheme = function (curso, tema)
+		{
+			// Obtenemos el tema en cuestion
+	        for(var i = 0; i < storageFactory.themes.length; i++){
+	            if(storageFactory.themes[i]._id === tema){
+	                storageFactory.themeBuild = storageFactory.themes[i];
+	            }
+	        }
+
+			$location.url('/courses/preview/theme/'+curso+'/'+tema);
+		};
+
 		// En escucha de cambios
 		$scope.$watch(vm.valueWitch);
 	}
@@ -98,6 +111,7 @@ Webcomponent para preview del curso
 	var cursoPreview = {
 		templateUrl: './scripts/components/curso-preview/curso-preview.html',
 		controller: [
+				'$location',
 				'$routeParams',
 				'$scope',
 				'storageFactory',
