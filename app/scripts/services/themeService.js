@@ -137,10 +137,14 @@ Servicio para procesar capitulos
 				storageFactory.themeBuild = data;
 				// Informacion para editar un tema
 				if(document.getElementById('formInfo')){
+					// Transformamos a edicion el tema
+					data.info = fncService.getCode(data.info);
+					data.doc = fncService.getCode(data.doc);
+
 					document.getElementById('formInfo').innerHTML = data.info;
 					document.getElementById('formDoc').innerHTML = data.doc;
-					document.getElementById('formVid').innerHTML = data.video;
-					document.getElementById('formGit').innerHTML = data.github;
+					document.getElementById('formVid').value = data.video;
+					document.getElementById('formGit').value = data.github;
 				}
 			}, error);
 		};
@@ -226,20 +230,22 @@ Servicio para procesar capitulos
 				var msgSuccess = 'La información se guardo con exito';
 				fncService.success(msgSuccess);
 
-				//model.info = '';
+				// Retornamos el codigo obtenido
+				data.info = fncService.getCode(data.info);
+				data.doc = fncService.getCode(data.doc);
 
 				// Actualizamos el tema
 				if(!fncService.isEmpty(storageFactory.themes)){
 					for(var i = 0; i < storageFactory.themes.length; i++){
 						if(storageFactory.themes[i]._id === data._id){
 							// Actualizamos el tema en cuestion
-							storageFactory.themes[i].info = data.info;
+							storageFactory.themes[i] = data;
 						}
 					}
 				}
 
 				// Actualizamos el tema actual
-				storageFactory.themeBuild.info = data.info;
+				storageFactory.themeBuild = data;
 			}
 
 			// verificamos que el control este disponible
@@ -247,11 +253,34 @@ Servicio para procesar capitulos
 				// actualizamos el control
 				control = 1;
 
+				// Preparamos el codigo de los textarea
+				// (evitamos problemas de seguridad en servidores)
+				var info = fncService.prepareCode(model.info);
+				var doc = fncService.prepareCode(model.doc);
+
+				// Verificamos que la url sea de youtube
+				if(!fncService.checkYouTube(model.vid)){
+					// Actualizamos control
+					control = 0;
+					fncService.error('Ingrese una url valida de youtube');
+					return 0;
+				}
+
+				// Verificamos que la url sea de github
+				if(!fncService.isEmpty(model.git)){
+					if(!fncService.checkGithub(model.git)){
+						// Actualizamos control
+						control = 0;
+						fncService.error('Ingrese una url valida de github');
+						return 0;
+					}
+				}
+
 				// Enviamos el recurso
 				themeDataResource.update({
 					id: id,
-					info: model.info,
-					doc: model.doc,
+					info: info,
+					doc: doc,
 					video: model.vid,
 					github: model.git
 				}, success, error);

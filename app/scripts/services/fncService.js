@@ -174,6 +174,71 @@ Servicio para funciones repetitivas
 		    }
 		};
 
+		// Funcion para transformar cadenas para guardar en la base de datos
+		this.prepareCode = function (content)
+		{
+			// Cadena para valorar
+			//var codigo = Array("<", ">","){","(",")","\n", "[b]", "[/b]", "[I]", "[/I]",
+			//	"[u]", "[/u]","[t]","[/t]","'","javascript:","array:","text/html");
+			var codigo = Array('[code]', '[/code]', "'", '\n', '[b]', '[/b]', '[I]', '[/I]', '[u]', '[/u]','[t]','[/t]');
+			// Cadena para transformar
+			//var replace = Array("[-","-]",") {","&-","-&","<br>","<b>","</b>","<i>","</i>",
+			//	"<u>","</u>","<strike>","</strike>",'"',"javascript :","array :","text/htm");
+			var replace = Array('<pre class="code">','</pre>', '"', '<br>', '<strong>', '</strong>', '<i>', '</i>', '<u>', '</u>', '<strike>', '</strike>');
+
+			if(content.length > 0){
+				// Reemplazamos en el contenido
+				for(var i = 0; i <= codigo.length; i++){
+					while(content.indexOf(codigo[i]) >= 0){
+						content = content.replace(codigo[i], replace[i]);
+					}
+				}
+			}
+
+			// Retornamos el resultado
+			return content;
+		};
+
+		// Funcion para transformar cadenas desde la base de datos
+		this.getCode = function (content)
+		{
+			// Cadena para valorar
+			// var codigo = Array("[-","-]",") {","&-","-&","<br>","<b>","</b>","<i>","</i>",
+			//	"<u>","</u>","<strike>","</strike>",'"',"javascript :","array :","text/htm");
+			var codigo = Array('<pre class="code">','</pre>', '<br>', '<strong>', '</strong>', '<i>', '</i>', '<u>', '</u>', '<strike>', '</strike>');
+			// Cadena para transformar
+			// var replace = Array("<", ">","){","(",")","\n", "[b]", "[/b]", "[I]", "[/I]",
+			//	"[u]", "[/u]","[t]","[/t]","'","javascript:","array:","text/html");
+			var replace = Array('[code]', '[/code]', '\n', '[b]', '[/b]', '[I]', '[/I]', '[u]', '[/u]','[t]','[/t]');
+
+			// Reemplazamos en el contenido
+			for(var i = 0; i <= codigo.length; i++){
+				while(content.indexOf(codigo[i]) >= 0){
+					content = content.replace(codigo[i], replace[i]);
+				}
+			}
+
+			// Retornamos el resultado
+			return content;
+		};
+
+		// Funcion que comprueba que una url sea de youtube
+		this.checkYouTube = function (url){
+			if(/^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com(?:\/embed\/|\/v\/|\/watch\?v=))([\w-]{11})(?:.+)?$/.test(url)){
+				return true; // Si es
+			} else {
+				return false; // Si no es
+			}
+		};
+
+		// Funcion que comprueba que una url sea de github
+		this.checkGithub = function (url){
+			if(/^(?:https?:\/\/)?(?:www\.)?(?:github\.com)+(\/[0-9a-zA-Z]{1,}\/)(?:.+)?$/.test(url)){
+				return true; // Si es
+			} else {
+				return false; // Si no es
+			}
+		};
 	}
 
 	angular

@@ -31,6 +31,22 @@ option:hover
 	background-color: #337AB7;
 	cursor: pointer;
 }
+input
+{
+	transition: all 0.25s ease-in-out;
+}
+input:focus
+{
+	background-color: #F9FF89;
+}
+textarea
+{
+	transition: all 0.25s ease-in-out;
+}
+textarea:focus
+{
+	background-color: #F9FF89;
+}
 
 .error
 {

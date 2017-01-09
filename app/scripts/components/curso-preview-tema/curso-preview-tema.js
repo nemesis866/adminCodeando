@@ -38,10 +38,22 @@ Webcomponent para curso modal administrar tema
             // Acciones para model
             if(typeof(model) === 'undefined'){
                 model = {};
-                model.info = '';
-                model.doc = '';
-                model.vid = '';
-                model.git = '';
+                model.info = storageFactory.themeBuild.info;
+                model.doc = storageFactory.themeBuild.doc;
+                model.vid = storageFactory.themeBuild.video;
+                model.git = storageFactory.themeBuild.github;
+            }
+            if(typeof(model.info) === 'undefined'){
+                model.info = storageFactory.themeBuild.info;
+            }
+            if(typeof(model.doc) === 'undefined'){
+                model.doc = storageFactory.themeBuild.doc;
+            }
+            if(typeof(model.vid) === 'undefined'){
+                model.vid = storageFactory.themeBuild.video;
+            }
+            if(typeof(model.git) === 'undefined'){
+                model.git = storageFactory.themeBuild.github;   
             }
 
             var control = themeService.setData(model, vm.tema);
