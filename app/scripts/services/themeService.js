@@ -255,9 +255,18 @@ Servicio para procesar capitulos
 
 				// Preparamos el codigo de los textarea
 				// (evitamos problemas de seguridad en servidores)
-				var info = fncService.prepareCode(model.info);
-				var doc = fncService.prepareCode(model.doc);
-
+				if(fncService.checkSize(model.info, 20, 'información')){
+					control = 0;
+					return 0;
+				} else {
+					var info = fncService.prepareCode(model.info);
+				}
+				if(fncService.checkSize(model.doc, 20, 'documentación')){
+					control = 0;
+					return 0;
+				} else {
+					var doc = fncService.prepareCode(model.doc);
+				}
 				// Verificamos que la url sea de youtube
 				if(!fncService.checkYouTube(model.vid)){
 					// Actualizamos control

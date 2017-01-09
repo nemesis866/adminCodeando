@@ -7,6 +7,23 @@ Servicio para funciones repetitivas
 
 	function FncService ()
 	{
+		// Funcion para verificar solo tamaño
+		this.checkSize = function (data, size, title)
+		{
+			var text = '';
+
+			if(data.length < size){
+				text = 'Debe ingresar minimo '+size+' caracteres para el campo '+title;
+			}
+
+			if(!this.isEmpty(text)){
+				this.error(text);
+
+				return true;
+			} else {
+				return false;
+			}
+		};
 		// Funcion para verificar los input
 		this.checkInput = function (data, size, title)
 		{
