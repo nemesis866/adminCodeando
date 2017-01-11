@@ -72,9 +72,12 @@ Webcomponent para curso modal administrar tema
                 vm.sel = fncService.getCursorSelection(document.getElementById(identificador));
                 if(fncService.isEmpty(vm.sel)){
                     // Si no hay texto seleccionado usamos uno por defecto
-                    vm.sel = '// aqui va el codigo';
+                    vm.selAux = '// aqui va el codigo';
+                    vm.sel = '';
+                } else {
+                    vm.selAux = vm.sel;
                 }
-                vm.inner = '[code]'+vm.sel+'[/code]'; // Contenido a insertar
+                vm.inner = '[code]'+vm.selAux+'[/code]'; // Contenido a insertar
                 vm.pos = fncService.getCursorPosition(document.getElementById(identificador)); // Obtenemos la posicion del puntero
                 vm.texto = document.getElementById(identificador).value; // Obtenemos el contenido del textarea
 
