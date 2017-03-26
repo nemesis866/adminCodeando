@@ -14,6 +14,9 @@ Webcomponent para editar categoria
 		// Cambiamos el titulo
 		document.title = 'Editar categoria | Codeando.org';
 
+		// Obtenemos los datos de la categoria a editar
+		categoryService.getByIdCategory(vm.param);
+
 		// Maneja de la clase oculto
 		vm.viewForm = { oculto: false };
 		vm.viewMsg = { oculto: true };
@@ -34,6 +37,12 @@ Webcomponent para editar categoria
 		// Guardamos la categoria
 		vm.updateCategory = function(model)
 		{
+			// Acciones para model
+			if(typeof(model) === 'undefined'){
+				model = {};
+				model.titulo = storageFactory.categoryEdit;	
+			}
+
 			var control = categoryService.updateCategory(model, vm.param);
 
 			// Verificamos el control
@@ -42,9 +51,6 @@ Webcomponent para editar categoria
 				vm.viewMsg = { oculto: false };				
 			}
 		};
-
-		// Obtenemos los datos de la categoria a editar
-		categoryService.getByIdCategory(vm.param);
 
 		// En escucha de cambios
 		$scope.$watch(vm.valueWitch);

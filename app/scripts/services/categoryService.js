@@ -173,6 +173,13 @@ Servicio para procesar categorias
 				// Ponemos el titulo en minusculas
 				var titulo = model.titulo.toLowerCase();
 
+				// Verificamos que no se llame igual la categoria
+				if(model.titulo === storageFactory.categoryEdit){
+					fncService.error("Ingrese un nombre de categoria diferente");
+					control = 0;
+					return 0;
+				}
+
 				// Enviamos el recurso
 				categoryExtraResource.update({
 					id: id,
