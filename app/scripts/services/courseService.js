@@ -160,6 +160,9 @@ Servicio para procesar cursos
 				courseExtraResource.delete({
 					id: id,
 				}, success, error);
+
+				// Retornamos 1 para cerrar ventana modal
+				return 1;
 			}
 		};
 

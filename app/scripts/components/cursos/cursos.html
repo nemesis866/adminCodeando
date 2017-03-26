@@ -38,7 +38,7 @@
 							<button type="button" class="btn btn-warning btn-xs" aria-haspopup="true" aria-expanded="false" ng-click="$ctrl.editCourse(course._id)">
 								<span class="glyphicon glyphicon-pencil"></span> Editar
 							</button>
-							<button type="button" class="btn btn-danger btn-xs" aria-haspopup="true" aria-expanded="false" ng-click="$ctrl.deleteCourse(course._id)">
+							<button type="button" class="btn btn-danger btn-xs" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#bs-curso-eliminar-modal-lg" data-id="{{ course._id }}">
 								<span class="glyphicon glyphicon-trash"></span> Eliminar
 							</button>
   						</td>
@@ -54,4 +54,5 @@
 
 <curso-modal-publicar></curso-modal-publicar>
 <curso-modal-mensaje></curso-modal-mensaje>
-<curso-modal-estadistica><curso-modal-estadistica>
+<curso-modal-estadistica></curso-modal-estadistica>
+<curso-modal-eliminar></curso-modal-eliminar>
