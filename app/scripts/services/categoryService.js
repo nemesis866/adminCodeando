@@ -115,6 +115,9 @@ Servicio para procesar categorias
 				categoryExtraResource.delete({
 					id: id,
 				}, success, error);
+
+				// Retornamos 1 para cerrar la ventana modal
+				return 1;
 			}
 		};
 
@@ -175,7 +178,7 @@ Servicio para procesar categorias
 
 				// Verificamos que no se llame igual la categoria
 				if(model.titulo === storageFactory.categoryEdit){
-					fncService.error("Ingrese un nombre de categoria diferente");
+					fncService.error('Ingrese un nombre de categoria diferente');
 					control = 0;
 					return 0;
 				}
