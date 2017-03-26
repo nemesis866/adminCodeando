@@ -52,7 +52,7 @@ Servicio para procesar capitulos
 
 				// Si ya existe el objeto lo actualizamos
 				if(fncService.isEmpty(storageFactory.themes)){
-					storageFactory.themes = data;
+					storageFactory.themes.push(data);
 				} else {
 					storageFactory.themes.push(data);
 				}

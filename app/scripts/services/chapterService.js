@@ -52,7 +52,7 @@ Servicio para procesar capitulos
 
 				// Si ya existe el objeto lo actualizamos
 				if(fncService.isEmpty(storageFactory.chapters)){
-					storageFactory.chapters = data;
+					storageFactory.chapters.push(data);
 				} else {
 					storageFactory.chapters.push(data);
 				}
