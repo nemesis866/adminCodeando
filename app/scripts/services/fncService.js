@@ -256,6 +256,11 @@ Servicio para funciones repetitivas
 				return false; // Si no es
 			}
 		};
+
+		// Funcion que coloca el primer texto en mayusculas
+		this.upperCase = function (string){
+			return string.charAt(0).toUpperCase() + string.slice(1);
+		};
 	}
 
 	angular

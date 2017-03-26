@@ -114,6 +114,15 @@ Servicio para procesar cursos
 					}
 				}
 
+				// Cambiamos la primer letra a mayusculas
+				descripcion = fncService.upperCase(descripcion);
+				requisitos = fncService.upperCase(requisitos);
+				model.subTitulo = model.subTitulo.toLowerCase();
+				var subTitulo = fncService.upperCase(model.subTitulo);
+				model.titulo = model.titulo.toLowerCase();
+				var titulo = fncService.upperCase(model.titulo);
+
+
 				// Enviamos el recurso
 				courseResource.save({
 					autor: storageFactory.user.id,
@@ -121,8 +130,8 @@ Servicio para procesar cursos
 					description: descripcion,
 					img: '',
 					requeriment: requisitos,
-					subtitulo: model.subTitulo,
-					titulo: model.titulo,
+					subtitulo: subTitulo,
+					titulo: titulo,
 					url: url2
 				}, success, error);
 
@@ -258,6 +267,14 @@ Servicio para procesar cursos
 					}
 				}
 
+				// Cambiamos la primer letra a mayusculas
+				descripcion = fncService.upperCase(descripcion);
+				requisitos = fncService.upperCase(requisitos);
+				model.subTitulo = model.subTitulo.toLowerCase();
+				var subTitulo = fncService.upperCase(model.subTitulo);
+				model.titulo = model.titulo.toLowerCase();
+				var titulo = fncService.upperCase(model.titulo);
+
 				// Enviamos el recurso
 				courseExtraResource.update({
 					id: id,
@@ -266,8 +283,8 @@ Servicio para procesar cursos
 					description: descripcion,
 					img: '',
 					requeriment: requisitos,
-					subtitulo: model.subTitulo,
-					titulo: model.titulo,
+					subtitulo: subTitulo,
+					titulo: titulo,
 					url: url2
 				}, success, error);
 

@@ -76,6 +76,9 @@ Servicio para procesar capitulos
 					orden = parseInt(storageFactory.chapters.length);
 				}
 
+				// Primer letra en mayusculas
+				model.titulo = fncService.upperCase(model.titulo);
+
 				// Enviamos el recurso
 				chapterResource.save({
 					autor: storageFactory.user.id,
@@ -195,6 +198,9 @@ Servicio para procesar capitulos
 						break;
 					}
 				}
+
+				// Primer letra en mayusculas
+				model.titulo = fncService.upperCase(model.titulo);
 
 				// Enviamos el recurso
 				chapterExtraResource.update({

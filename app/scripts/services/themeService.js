@@ -76,6 +76,9 @@ Servicio para procesar capitulos
 					orden = parseInt(storageFactory.themes.length);
 				}
 
+				// Primer letra en mayusculas
+				model.titulo = fncService.upperCase(model.titulo);
+
 				// Enviamos el recurso
 				themeResource.save({
 					autor: storageFactory.user.id,
@@ -205,6 +208,9 @@ Servicio para procesar capitulos
 						break;
 					}
 				}
+
+				// Primer letra en mayusculas
+				model.titulo = fncService.upperCase(model.titulo);
 
 				// Enviamos el recurso
 				themeResource.update({
