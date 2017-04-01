@@ -6,9 +6,9 @@ Servicio para obtener los capitulo
 (function (){
 	'use strict';
 
-	function ChapterResource ($resource)
+	function ChapterResource ($resource, storageFactory)
 	{
-		var url = 'http://127.0.0.1:5000/chapters';
+		var url = storageFactory.urlServer+'/chapters';
 
 		return $resource(url, {}, {
   			'save': { method:'POST', isArray:false }
@@ -20,6 +20,7 @@ Servicio para obtener los capitulo
 		.module('app')
 			.service('chapterResource', [
 				'$resource',
+				'storageFactory',
 				ChapterResource
 			]);
 })();
@@ -28,9 +29,9 @@ Servicio para obtener los capitulo
 (function (){
 	'use strict';
 
-	function ChapterExtraResource ($resource)
+	function ChapterExtraResource ($resource, storageFactory)
 	{
-		var url = 'http://127.0.0.1:5000/chapters/:id';
+		var url = storageFactory.urlServer+'/chapters/:id';
 
 		return $resource(url, {}, {
 			'update': { method: 'PUT' }
@@ -41,6 +42,7 @@ Servicio para obtener los capitulo
 		.module('app')
 			.service('chapterExtraResource', [
 				'$resource',
+				'storageFactory',
 				ChapterExtraResource
 			]);
 })();
@@ -49,9 +51,9 @@ Servicio para obtener los capitulo
 (function (){
 	'use strict';
 
-	function ChapterCourseResource ($resource)
+	function ChapterCourseResource ($resource, storageFactory)
 	{
-		var url = 'http://127.0.0.1:5000/chapters/course/:id';
+		var url = storageFactory.urlServer+'/chapters/course/:id';
 
 		return $resource(url, {}, {
 			'update': { method: 'PUT' }
@@ -62,6 +64,7 @@ Servicio para obtener los capitulo
 		.module('app')
 			.service('chapterCourseResource', [
 				'$resource',
+				'storageFactory',
 				ChapterCourseResource
 			]);
 })();

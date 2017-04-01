@@ -6,9 +6,9 @@ Servicio para obtener las categorias
 (function (){
 	'use strict';
 
-	function CategoryResource ($resource)
+	function CategoryResource ($resource, storageFactory)
 	{
-		var url = 'http://127.0.0.1:5000/categories';
+		var url = storageFactory.urlServer+'/categories';
 
 		return $resource(url, {}, {
   			'save': { method:'POST', isArray:false }
@@ -20,6 +20,7 @@ Servicio para obtener las categorias
 		.module('app')
 			.service('categoryResource', [
 				'$resource',
+				'storageFactory',
 				CategoryResource
 			]);
 })();
@@ -28,9 +29,9 @@ Servicio para obtener las categorias
 (function (){
 	'use strict';
 
-	function CategoryExtraResource ($resource)
+	function CategoryExtraResource ($resource, storageFactory)
 	{
-		var url = 'http://127.0.0.1:5000/categories/:id';
+		var url = storageFactory.urlServer+'/categories/:id';
 
 		return $resource(url, {}, {
 			'update': { method: 'PUT' }
@@ -41,6 +42,7 @@ Servicio para obtener las categorias
 		.module('app')
 			.service('categoryExtraResource', [
 				'$resource',
+				'storageFactory',
 				CategoryExtraResource
 			]);
 })();

@@ -22,6 +22,7 @@ Factory para compartir datos entre los controladores
         themeClass: { oculto: true }, //Guardamos el valor de la clase
         themeEdit: {}, // Objeto para almacenar un tema en especifico
         themeHeader: '', // Guardamos el titulo de la seccion de temas
+        urlServer: 'http://127.0.0.1:5000', // Url del servidor DB
     	user: {
     		id: 1234567890, // ID del usuario
     		name: 'Paulo Andrade', // Nombre del usuario

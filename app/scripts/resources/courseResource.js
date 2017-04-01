@@ -6,9 +6,9 @@ Servicio para obtener los cursos
 (function (){
 	'use strict';
 
-	function CourseResource ($resource)
+	function CourseResource ($resource, storageFactory)
 	{
-		var url = 'http://127.0.0.1:5000/cursos';
+		var url = storageFactory.urlServer+'/cursos';
 
 		return $resource(url, {}, {
   			'save': { method:'POST', isArray:false }
@@ -20,6 +20,7 @@ Servicio para obtener los cursos
 		.module('app')
 			.service('courseResource', [
 				'$resource',
+				'storageFactory',
 				CourseResource
 			]);
 })();
@@ -28,9 +29,9 @@ Servicio para obtener los cursos
 (function (){
 	'use strict';
 
-	function CourseExtraResource ($resource)
+	function CourseExtraResource ($resource, storageFactory)
 	{
-		var url = 'http://127.0.0.1:5000/cursos/:id';
+		var url = storageFactory.urlServer+'/cursos/:id';
 
 		return $resource(url, {}, {
 			'update': { method: 'PUT' }
@@ -41,6 +42,7 @@ Servicio para obtener los cursos
 		.module('app')
 			.service('courseExtraResource', [
 				'$resource',
+				'storageFactory',
 				CourseExtraResource
 			]);
 })();
@@ -49,9 +51,9 @@ Servicio para obtener los cursos
 (function (){
 	'use strict';
 
-	function CourseAutorResource ($resource)
+	function CourseAutorResource ($resource, storageFactory)
 	{
-		var url = 'http://127.0.0.1:5000/cursos/autor/:id';
+		var url = storageFactory.urlServer+'/cursos/autor/:id';
 
 		return $resource(url, {}, {
 			'update': { method: 'PUT' }
@@ -62,6 +64,7 @@ Servicio para obtener los cursos
 		.module('app')
 			.service('courseAutorResource', [
 				'$resource',
+				'storageFactory',
 				CourseAutorResource
 			]);
 })();

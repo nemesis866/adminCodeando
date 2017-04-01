@@ -6,9 +6,9 @@ Servicio para obtener los temas
 (function (){
 	'use strict';
 
-	function ThemeResource ($resource)
+	function ThemeResource ($resource, storageFactory)
 	{
-		var url = 'http://127.0.0.1:5000/themes';
+		var url = storageFactory.urlServer+'/themes';
 
 		return $resource(url, {}, {
   			'save': { method:'POST', isArray:false },
@@ -20,6 +20,7 @@ Servicio para obtener los temas
 		.module('app')
 			.service('themeResource', [
 				'$resource',
+				'storageFactory',
 				ThemeResource
 			]);
 })();
@@ -28,9 +29,9 @@ Servicio para obtener los temas
 (function (){
 	'use strict';
 
-	function ThemeExtraResource ($resource)
+	function ThemeExtraResource ($resource, storageFactory)
 	{
-		var url = 'http://127.0.0.1:5000/themes/:id';
+		var url = storageFactory.urlServer+'/themes/:id';
 
 		return $resource(url, {}, {
 			'update': { method: 'PUT' }
@@ -41,6 +42,7 @@ Servicio para obtener los temas
 		.module('app')
 			.service('themeExtraResource', [
 				'$resource',
+				'storageFactory',
 				ThemeExtraResource
 			]);
 })();
@@ -49,9 +51,9 @@ Servicio para obtener los temas
 (function (){
 	'use strict';
 
-	function ThemeChapterResource ($resource)
+	function ThemeChapterResource ($resource, storageFactory)
 	{
-		var url = 'http://127.0.0.1:5000/themes/chapters/:capitulo/:curso';
+		var url = storageFactory.urlServer+'/themes/chapters/:capitulo/:curso';
 
 		return $resource(url, {}, {
 			'update': { method: 'PUT' }
@@ -62,6 +64,7 @@ Servicio para obtener los temas
 		.module('app')
 			.service('themeChapterResource', [
 				'$resource',
+				'storageFactory',
 				ThemeChapterResource
 			]);
 })();
@@ -70,9 +73,9 @@ Servicio para obtener los temas
 (function (){
 	'use strict';
 
-	function ThemeDataResource ($resource)
+	function ThemeDataResource ($resource, storageFactory)
 	{
-		var url = 'http://127.0.0.1:5000/themes/data';
+		var url = storageFactory.urlServer+'/themes/data';
 
 		return $resource(url, {}, {
   			'save': { method:'POST', isArray:false },
@@ -84,6 +87,7 @@ Servicio para obtener los temas
 		.module('app')
 			.service('themeDataResource', [
 				'$resource',
+				'storageFactory',
 				ThemeDataResource
 			]);
 })();
