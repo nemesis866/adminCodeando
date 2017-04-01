@@ -16,8 +16,13 @@ Webcomponent para curso modal editar tema
 		{
 			// Acciones para model
 			if(typeof(model) === 'undefined'){
+				// Informacion para model
 				model = {};
-				model.titulo = '';
+				for(var i = 0; i < storageFactory.themes.length; i++){
+					if(storageFactory.themes[i]._id === vm.themeId){
+						model.titulo = storageFactory.themes[i].titulo;
+					}
+				}
 			}
 
 			var control = themeService.updateTheme(model, vm.themeId);

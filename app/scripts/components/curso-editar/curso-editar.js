@@ -41,6 +41,19 @@ Webcomponent para editar curso
 		// Guardamos la categoria
 		vm.updateCourse = function(model)
 		{
+			// Acciones para model
+			if(typeof(model) === 'undefined'){
+				// Contenido por default para model
+				model = {};
+				model.categoria = storageFactory.courseEdit.categoria;
+				model.descripcion = storageFactory.courseEdit.description;
+				model.img = storageFactory.courseEdit.img;
+				model.requisitos = storageFactory.courseEdit.requeriment;
+				model.subTitulo = storageFactory.courseEdit.subtitulo;
+				model.titulo = storageFactory.courseEdit.titulo;
+				model.url = storageFactory.courseEdit.url;
+			}
+
 			var control = courseService.updateCourse(model, vm.param);
 
 			// Verificamos el control

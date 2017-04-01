@@ -5,7 +5,7 @@ Servicio para procesar capitulos
 (function (){
 	'use strict';
 
-	function ThemeService ($location, themeResource, themeChapterResource, themeDataResource, themeExtraResource, storageFactory, fncService)
+	function ThemeService ($location, $timeout, themeResource, themeChapterResource, themeDataResource, themeExtraResource, storageFactory, fncService)
 	{
 		var control = 0;
 
@@ -252,12 +252,19 @@ Servicio para procesar capitulos
 
 				// Actualizamos el tema actual
 				storageFactory.themeBuild = data;
+
+				// Redireccionamos
+				$timeout(function (){
+					$location.url('/courses/preview/'+data.id_curso);
+				}, 2000);
 			}
 
 			// verificamos que el control este disponible
 			if(control === 0){
 				// actualizamos el control
 				control = 1;
+				var info;
+				var doc;
 
 				// Preparamos el codigo de los textarea
 				// (evitamos problemas de seguridad en servidores)
@@ -265,13 +272,13 @@ Servicio para procesar capitulos
 					control = 0;
 					return 0;
 				} else {
-					var info = fncService.prepareCode(model.info);
+					info = fncService.prepareCode(model.info);
 				}
 				if(fncService.checkSize(model.doc, 20, 'documentación')){
 					control = 0;
 					return 0;
 				} else {
-					var doc = fncService.prepareCode(model.doc);
+					doc = fncService.prepareCode(model.doc);
 				}
 				// Verificamos que la url sea de youtube
 				if(!fncService.checkYouTube(model.vid)){
@@ -309,6 +316,7 @@ Servicio para procesar capitulos
 		.module('app')
 			.service('themeService', [
 				'$location',
+				'$timeout',
 				'themeResource',
 				'themeChapterResource',
 				'themeDataResource',

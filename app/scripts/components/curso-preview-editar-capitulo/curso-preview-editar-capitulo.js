@@ -16,8 +16,13 @@ Webcomponent para curso modal editar capitulo
 		{
 			// Acciones para model
 			if(typeof(model) === 'undefined'){
+				// Contenido para el model
 				model = {};
-				model.titulo = '';
+				for(var i = 0; i < storageFactory.chapters.length; i++){
+					if(storageFactory.chapters[i]._id === vm.cursoId){
+						model.titulo = storageFactory.chapters[i].titulo;
+					}
+				}
 			}
 
 			var control = chapterService.updateChapter(model, vm.cursoId);

@@ -37,6 +37,7 @@ Webcomponent para curso modal administrar tema
         {
             // Acciones para model
             if(typeof(model) === 'undefined'){
+                // nformacion por defecto para model 
                 model = {};
                 model.info = storageFactory.themeBuild.info;
                 model.doc = storageFactory.themeBuild.doc;
