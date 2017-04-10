@@ -150,3 +150,32 @@ Opciones para toolbox
 {
 	margin-left: 5px;
 }
+
+/********************************************
+Opciones para Archivos
+********************************************/
+
+#file_cargando
+{
+	text-align: center;
+}
+#file_edit
+{
+	background-color: #Ff8124;
+	border-radius: 3px;
+	border: 1px solid #Ff8124;
+	border-bottom: 3px solid #ee7013;
+	color: #fff;
+	margin-top: 5px;
+	padding: 10px 0;
+	text-align: center;
+}
+#file_edit:hover
+{
+	opacity: 0.8;
+	cursor: copy;
+}
+#file_results
+{
+	margin-top: 5px;
+}
