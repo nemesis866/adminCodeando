@@ -6,9 +6,21 @@ Webcomponent para los archivos
 	'use strict';
 
 	// Controlador
-	function Archivo (fncService)
+	function Archivo ($scope, $routeParams, $timeout,storageFactory, fileService, fncService)
 	{
 		var vm = this;
+		var control = 0;
+
+		// Cargamos archivos en caso de existir
+		storageFactory.files = {}; // Limpiamos el buffer
+		fileService.getFile($routeParams.tema);
+
+		// Propiedades en escucha
+		vm.watch = function ()
+		{
+			vm.files = storageFactory.files;
+			vm.temp = storageFactory.filesView;
+		};
 
 		// Al arrastrar los documentos
 		document.getElementById('file_edit').ondragover = function (e)
@@ -44,10 +56,6 @@ Webcomponent para los archivos
 			// Evitamos la propagacion
 			e.preventDefault();
 			e.stopPropagation();
-
-			// Variables de reemplazo para los archivos
-			var codigo = Array('<', '>','){','(',')',"'",'\t','javascript:','array:','text/html');
-			var replace = Array('[-','-]',') {','&-','-&','"','&nbsp;&nbsp;&nbsp;&nbsp;','javascript :','array :','text/htm');
 
 			// Obtenemos el total de archivos transferidos
 			var count = e.dataTransfer.files.length;
@@ -92,41 +100,20 @@ Webcomponent para los archivos
 						// Cargamos el archivo
 						lector.addEventListener('load', function (e){
 		                    var cadena = e.target.result;
-		                    console.log(cadena);
-		                    cadena = cadena.replace(/</g,'&lt;');
-		                    cadena = cadena.replace(/>/g,'&gt;');
 
 		                    // Remplazamos los caracteres
-			                for(var ii=0; ii <= codigo.length; ii++){
-								while(cadena.indexOf(codigo[ii]) >= 0){
-									cadena = cadena.replace(codigo[ii], replace[ii]);
-								}
-							}
+			                cadena = fncService.setFileCode(cadena);
 
-							/*
 							// Guardamos en la base de datos temporal el archivo
-			                ajax('include/server_files.php',{
-			                	ext: ext,
+			                var model = {
+								ext: ext,
 			                	name: name,
 			                	size: size,
 			                	contenido: cadena,
-			                	control: control,
-			                	type: 'file_temp',
-			                	tipo: 'DIS'
-			                }, function (data){
-			                	document.getElementById('content_dis_cargando').innerHTML = '';
-
-			                	if(isEmpty(data.error)){
-			                		// Si el objeto esta vacio
-			                		document.getElementById('content_dis_results').innerHTML += '<div id="file_'+data['id']+'" class="files icon-'+ext+'" onclick="javascript:files_mostrar('+data['id']+')">'+name+' ('+size+'Kb)<span onclick="javascript:files_delete('+data['id']+')">X</span></div>';
-			                		success(data.status);
-			                	} else {
-			                		// Si hay un error
-			                		error(data.error);
-			                	}
-			                }, 'Json');
-							*/
-		                    //document.getElementById('content').innerHTML += '<pre>'+cadena+'</pre>';
+			                	control: control
+			                };
+			                fileService.setFile(model);
+							
 		                }, false);
 
 						// Si muestra un error el archivo lo mostramos en pantalla
@@ -160,29 +147,114 @@ Webcomponent para los archivos
 		// Eliminamos un archivo
 		vm.fileDelete = function (id)
 		{
-			/*
-			ajax('include/server_files.php',{
-				id: id,
-				type: 'file_delete'
-			}, function (data){
-				// Ocultamos el archivo
-				document.getElementById('file_'+data.id).style.display = 'none';
-				// Ocultamos la vista previa del archivo
-				back_files();
+			fileService.deleteFile(id);
+			vm.back();
+		};
 
-				success(data.status);
-			}, 'Json');
-			*/
-		};		
+		// Mostramos un archivo
+		vm.fileView = function (id)
+		{
+			// Obtenemos el archivo
+			for(var i = 0; i < storageFactory.files.length; i++){
+				if(storageFactory.files[i]._id === id){
+					storageFactory.filesView = {
+						ext: storageFactory.files[i].ext,
+						name: storageFactory.files[i].name,
+						contenido: fncService.getFileCode(storageFactory.files[i].contenido)
+					};
+				}
+			}
+
+			// Mostramos la ventana
+			document.getElementById('file').style.transform = 'translateX(0)';
+			document.getElementById('file').style.webkitTransform = 'translateX(0)';
+
+			$timeout(function (){
+				vm.resaltador();
+			}, 100);
+		};
+
+		// Ocultamos un archivo
+		vm.back = function ()
+		{
+			document.getElementById('file').style.transform = 'translateX(-100%)';
+			document.getElementById('file').style.webkitTransform = 'translateX(-100%)';
+
+			// Reiniciamos
+			storageFactory.fileView = {};
+		};
+
+		// Resaltador de sintaxis
+		vm.resaltador = function ()
+		{
+			// ########### ZONA EDITABLE ########################################################################################
+		    var lenguajeEspecifico = ''; //Dejarlo así para que funcione por defecto con la mayoría de lenguajes más usados 
+		    var skin = 'desert'; //Selección de skin o tema. Ver lista posible más abajo. Por defecto se usa el skin 'default'
+		    // ########### FIN ZONA EDITABLE ########################################################################################
+
+		    fncService.getScript('/externo/resaltador.js?skin=' + (skin ? skin : 'default') + (lenguajeEspecifico ? '?lang=' + lenguajeEspecifico : ''));
+		    var code = document.querySelectorAll('.code');
+		    for(var i = 0; i < code.length; i++){
+		    	// Obtenemos el html de code en cuestion
+		    	var contenido = code[i].innerHTML;
+		    	var pre = '<pre class="prettyprint' + (lenguajeEspecifico ? ' lang-' + lenguajeEspecifico : '') + '" >';
+
+		    	// Agregamos el contenido
+		    	code[i].innerHTML = pre + contenido + '</pre>';
+		    }
+
+		    // Modificamos todas las etiquetas .tag y .str
+		    $timeout(function (){
+			    var tag = document.querySelectorAll('.tag');
+			    var contenido = '';
+
+			    for(var i = 0; i < tag.length; i++){
+			    	contenido = tag[i].innerHTML;
+			    	// reemplazamos los simbolos < y >
+		    		contenido = contenido.replace(/&lt;\//g,'<span style="color:#fff;font-weight:normal;">&lt;/</span>');
+					contenido = contenido.replace(/&lt;/g,'<span style="color:#fff;font-weight:normal;">&lt;</span>');
+					contenido = contenido.replace(/&gt;/g,'<span style="color:#fff;font-weight:normal;">&gt;</span>');
+
+			    	tag[i].innerHTML = contenido;
+			    }
+
+			    var str = document.querySelectorAll('.str');
+			    for(var j = 0; j < str.length; j++){
+			    	contenido = str[j].innerHTML;
+			    	// reemplazamos los simbolos \n
+			    	contenido = contenido.replace(/\n/g,'\\n');
+
+			    	str[j].innerHTML = contenido;
+			    }
+
+			    var com = document.querySelectorAll('.com');
+			    for(var k = 0; k < com.length; k++){
+			    	contenido = com[k].innerHTML;
+			    	// reemplazamos los simbolos \n
+			    	//contenido = contenido.replace(/\n/g,'\\n');
+
+			    	com[k].innerHTML = contenido;
+			    }
+			}, 1000);
+		};
+
+		// Ponemos en escucha
+		$scope.$watch(vm.watch);
 	} // Cierra la funcion controlador
 
 	// Configuracion del web component
 	var archivo = {
 		templateUrl: './scripts/components/archivo/archivo.html',
 		controller: [
+			'$scope',
+			'$routeParams',
+			'$timeout',
+			'storageFactory',
+			'fileService',
 			'fncService',
 			Archivo
-		]
+		],
+		controllerAs: 'vm'
 	};
 
 	angular

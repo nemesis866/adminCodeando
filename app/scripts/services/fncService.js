@@ -239,6 +239,46 @@ Servicio para funciones repetitivas
 			return content;
 		};
 
+		// Convertidor de codigo para archivos
+		this.setFileCode = function (content)
+		{
+			// Variables de reemplazo para los archivos
+			var codigo = Array('<', '>','){','(',')',"'",'\t','javascript:','array:','text/html');
+			var replace = Array('[-','-]',') {','&-','-&','"','&nbsp;&nbsp;&nbsp;&nbsp;','javascript :','array :','text/htm');
+
+			content = content.replace(/</g,'&lt;');
+		    content = content.replace(/>/g,'&gt;');
+
+			// Reemplazamos en el contenido
+			for(var i = 0; i <= codigo.length; i++){
+				while(content.indexOf(codigo[i]) >= 0){
+					content = content.replace(codigo[i], replace[i]);
+				}
+			}
+
+			return content;
+		}
+
+		// Convertidor de codigo para archivos
+		this.getFileCode = function (content)
+		{
+			// Variables de reemplazo para los archivos
+			var codigo = Array('[-','-]',') {','&-','-&','"','&nbsp;&nbsp;&nbsp;&nbsp;','javascript :','array :','text/htm');
+			var replace = Array('<', '>','){','(',')',"'",'\t','javascript:','array:','text/html');
+
+			content = content.replace(/&lt;/g, '<');
+		    content = content.replace(/&gt;/g, '>');
+
+			// Reemplazamos en el contenido
+			for(var i = 0; i <= codigo.length; i++){
+				while(content.indexOf(codigo[i]) >= 0){
+					content = content.replace(codigo[i], replace[i]);
+				}
+			}
+
+			return content;
+		}
+
 		// Funcion que comprueba que una url sea de youtube
 		this.checkYouTube = function (url){
 			if(/^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com(?:\/embed\/|\/v\/|\/watch\?v=))([\w-]{11})(?:.+)?$/.test(url)){
@@ -261,6 +301,15 @@ Servicio para funciones repetitivas
 		this.upperCase = function (string){
 			return string.charAt(0).toUpperCase() + string.slice(1);
 		};
+
+		// Funcion similar a getScript() de jquery
+		this.getScript = function (url)
+		{
+		    var g = document.createElement('script'), // create a script tag
+		        s = document.getElementsByTagName('script')[0]; // find the first script tag in the document
+		    g.src = url; // set the source of the script to your script
+		    s.parentNode.insertBefore(g, s); // append the script to the DOM
+		}
 	}
 
 	angular

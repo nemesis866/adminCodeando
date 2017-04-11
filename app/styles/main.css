@@ -6,6 +6,19 @@
 Opciones generales
 ********************************************/
 
+@font-face{
+	font-family: 'icomoon';
+	src: url('/fonts/icomoon.eot');
+	src: url('/fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+	url('/fonts/icomoon.svg#icomoon') format('svg'),
+	url('/fonts/icomoon.woff') format('woff'),
+	url('/fonts/icomoon.ttf') format('truetype');
+	font-weight: normal; font-style: normal;
+}
+@font-face {
+    font-family: 'Ralewey';
+    src: url('/fonts/Raleway-Regular.ttf') format("truetype");
+}
 *
 {
 	margin: 0;
@@ -19,7 +32,7 @@ body
 {
 	background-color: #f0f0f0;
 	color: #333;
-	font-family: verdana;
+	font-family: 'Ralewey', verdana;
 	font-size: 16px;
 }
 option
@@ -155,6 +168,33 @@ Opciones para toolbox
 Opciones para Archivos
 ********************************************/
 
+.back
+{
+	color: #fff;
+	font-size: 24px;
+	background-color: #4F73AA;
+	border-bottom:5px solid #3e6299;
+	padding: 20px 20px;
+	text-align: center;
+}
+.back:hover
+{
+	cursor: pointer;
+	opacity: 0.8;
+}
+#file
+{
+	position: fixed;
+	background: #fff;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	transition-duration: .25s;
+	transform: translateX(-100%);
+	overflow-y: auto;
+	z-index: 3;
+}
 #file_cargando
 {
 	text-align: center;
@@ -175,7 +215,196 @@ Opciones para Archivos
 	opacity: 0.8;
 	cursor: copy;
 }
+#file_content
+{
+	width: 80%;
+	margin: 0 auto;
+}
 #file_results
 {
 	margin-top: 5px;
+}
+.files
+{
+	padding: 5px;
+	background-color: #ddd;
+	border: 1px solid #ccc;
+	border-bottom: 3px solid #ccc;
+	transition: all 0.25s ease;
+	margin-bottom: 5px;
+}
+.files:hover
+{
+	background-color: #ccc;
+	border: 1px solid #bbb;
+	border-bottom: solid #bbb;
+	cursor: pointer;
+}
+.files span
+{
+	float: right;
+	color: #fff;
+	background-color: #999;
+	border-radius: 50px;
+	width: 16px;
+	text-align: center;
+	font-size: 0.7em;
+}
+.files span:hover
+{
+	cursor: pointer;
+	opacity: 0.8;
+}
+.icon-html:before
+{
+	color: #F16529;
+	content: '\e630';
+	font-family: 'icomoon';
+	font-size: 1em;
+	padding-right: 10px;
+}
+.icon-css:before
+{
+	color: #2CA5DE;
+	content: '\e631';
+	font-family: 'icomoon';
+	font-size: 1em;
+	padding-right: 10px;
+}
+.icon-js:before
+{
+	color: #D6BA33;
+	content: '\e62e';
+	font-family: 'icomoon';
+	font-size: 1em;
+	padding-right: 10px;
+}
+.icon-php:before
+{
+	color: #5A68A5;
+	content: '\e62e';
+	font-family: 'icomoon';
+	font-size: 1em;
+	padding-right: 10px;
+}
+.icon-json:before
+{
+	color: #A3BF07;
+	content: '\e62f';
+	font-family: 'icomoon';
+	font-size: 1em;
+	padding-right: 10px;
+}
+.icon-c:before
+{
+	color: #F11717;
+	content: '\e62e';
+	font-family: 'icomoon';
+	font-size: 1em;
+	padding-right: 10px;
+}
+.icon-cpp:before
+{
+	color: #F11717;
+	content: '\e62e';
+	font-family: 'icomoon';
+	font-size: 1em;
+	padding-right: 10px;
+}
+.icon-h:before
+{
+	color: #F33939;
+	content: '\e62e';
+	font-family: 'icomoon';
+	font-size: 1em;
+	padding-right: 10px;
+}
+.icon-hpp:before
+{
+	color: #F33939;
+	content: '\e62e';
+	font-family: 'icomoon';
+	font-size: 1em;
+	padding-right: 10px;
+}
+.icon-left:before
+{
+	color: #fff;
+	content: '\e64b';
+	font-family: 'icomoon';
+	font-size: 24px;
+	padding-right: 15px;
+}
+
+/*********************************************************
+Configuracion resaltador de sintaxis
+*********************************************************/
+
+pre
+{
+	border: none !important;
+}
+/* atributos html */
+.atn
+{
+	color: #7FE22E !important;
+}
+/* strings */
+.atv, .str
+{
+	color: #E6DB74 !important;
+}
+/* comentarios */
+.com
+{
+	color: #75715E !important;
+}
+.dec
+{
+	color: white !important;
+}
+/* palabras claves */
+.kwd
+{
+	color: #66D9EF !important;
+}
+/* numeros */
+.lit
+{
+	color: #8481FF !important;
+}
+/* operadores */
+.pun
+{
+	color: #fff !important;
+}
+.prettyprint
+{
+	background: #272822 !important;
+}
+/* etiquetas html */
+.tag
+{
+	color: #F92672 !important;
+}
+.typ
+{
+	color: #66D9EF !important;
+}
+.pln
+{
+	color: #fcfcfc !important;
+}
+
+.code
+{
+	background: #272822;
+	color: #ccc;
+	padding: 5px 10px;
+	overflow-x: auto;
+	font-size: 14px;
+}
+.code span
+{
+	float:none !important;
 }

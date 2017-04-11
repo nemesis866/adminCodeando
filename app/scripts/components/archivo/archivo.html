@@ -1,4 +1,14 @@
-<div id="file_edit">Arrastre aqui sus archivos<br>(Tamaño maximo 10 Kb.)</div>
-<div id="file_results"></div>
+<div id="file_edit">Arrastre aqui sus archivos de apoyo para el tema<br>(Tamaño maximo 10 Kb.)</div>
+<div id="file_results">
+	<div ng-repeat="file in vm.files | orderBy:'name':false" id="file_{{ file._id }}" class="files icon-{{ file.ext }}" ng-click="vm.fileView(file._id)">
+		{{ file.name }} ({{ file.size }} Kb)<span ng-click="vm.fileDelete(file._id)">X</span>
+	</div>
+</div>
 <div id="file_cargando"></div>
-<div class="text-right">
+<div id="file">
+	<div class="back icon-left" ng-click="vm.back()">Cerrar</div>
+	<div id="file_content">
+		<h2 class='icon-{{ vm.temp.ext }}'>{{ vm.temp.name }}</h2>
+		<div class='code'>{{ vm.temp.contenido }}</div>
+	</div>
+</div>

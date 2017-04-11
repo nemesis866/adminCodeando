@@ -17,6 +17,8 @@ Factory para compartir datos entre los controladores
         chapterID: '', // Guardamos el ID del capitulo
     	courses: {}, // Objeto para almacenar los cursos
     	courseEdit: {}, // Objeto para almacenar un curso en especifico
+        files: {}, // Objeto para guardar los archivos de los temas
+        filesView: {}, // Objeto para visualizar un archivo
         themes: {}, // Objeto para almacenar los temas de un capitulo
         themeBuild: {}, // Guardamos el tema en cuestion para construccion
         themeClass: { oculto: true }, //Guardamos el valor de la clase
